@@ -21,13 +21,14 @@ const booksSlice = createSlice({
             state.push(action.payload) // immer retuns new object )
         },
         updatingBook() {},
-        updateBook(state, action) {
-            
-        }
+        // updateBook(state, action) {
+        //     return state
+        // }
     }
 
 });
 
-export const { getBooks, setBooks, deleteBook, deletingBook, addingBook, addBook } = booksSlice.actions;
+export const { getBooks, setBooks, deleteBook, deletingBook, addingBook,
+            addBook, updatingBook, updateBook } = booksSlice.actions;
 
 export default booksSlice.reducer;

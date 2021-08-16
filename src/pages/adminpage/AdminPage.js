@@ -1,20 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { firebase } from '../../initFirebase';
+// import { useHistory } from 'react-router';
 
 import { getBooks, deletingBook, addingBook } from '../../redux/ducks/booksSlice';
 
+import ChangeBookForm from './components/changebookform/ChangeBookForm';
+
+import Modal from '../../ui/modal/Modal';
+
 import styles from './AdminPage.module.css';
 
-const db = firebase.database()
 
 const AdminPage = (props) => {
+    const [fileBase64, setFileBase64] = useState('')
+    const [showBookDetail, setShowBookDetail] = useState(false)
+    const [currentBook, setCurrentBook] = useState(null)
+
+    console.log('currentBook', currentBook)
+    console.log('base64', fileBase64)
 
     const books = useSelector(state => state.books)
     console.log('books adminPage', books)
     const dispatch = useDispatch()
-    // const history = useHistory()
 
     const title = useRef('')
     const writer = useRef('')
@@ -22,12 +29,6 @@ const AdminPage = (props) => {
     const genre = useRef('')
     const count = useRef('')
     const isbn = useRef('')
-
-    useEffect(() => {
-        dispatch(getBooks())
-    }, [])
-
-    
 
     const addBookHandler = (e) => {
         e.preventDefault()
@@ -37,7 +38,8 @@ const AdminPage = (props) => {
             yearPublished: yearPublished.current.value,
             genre: genre.current.value,
             count: count.current.value,
-            isbn: isbn.current.value
+            isbn: isbn.current.value,
+            img: fileBase64
         }
         dispatch(addingBook(newBook))
         title.current.value = ''
@@ -47,29 +49,44 @@ const AdminPage = (props) => {
         count.current.value = 0
         isbn.current.value = 0
 
+        setFileBase64('')
+
         title.current.focus()
     }
 
-    // const changeBookCountHandler = (id, type) => {
-    //     const book = books.find(book => book.id === id)
-    //     if (type === 'minus') {
-    //         if (book.count === 0) {
-    //             return
-    //         }
-    //         dispatch(updatingBook(book.count - 1))
-    //     }
-    //     if (type === 'plus') {
-    //         dispatch(updatingBook(book.count + 1))
-    //     }
-    // }
 
+    const onFileChange = (e) => {
+        // console.log('file changed')
+        const file = e.target.files[0]
+        // console.log('choosen file', file)
+        encodeToBase64(file)
+    }
+
+    const encodeToBase64 = (file) => {
+        const reader = new FileReader();
+        if (file) {
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                let base64 = reader.result
+                setFileBase64(base64)
+            }
+            reader.onerror = err => console.log(err)
+        }
+    }
 
     return (
         <>
+        <Modal closing={() => [setShowBookDetail(false), setCurrentBook(null)]} show={showBookDetail} >
+            {
+                currentBook ?
+                <ChangeBookForm book={currentBook} />
+                : <h3>Loading...</h3>
+            }
+        </Modal>
         <h1 style={{width: '30%', margin: 'auto', textAlign: 'center', marginBottom: '10px'}} >Admin Page</h1>
         <div className={styles.AdminPage}>
             <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                <div className={styles.formDiv} >
+                <div className={styles.FormDiv} >
                     <form>
                         <p style={{fontWeight: 'bold'}} >Add new book</p>
                         <label >title</label>
@@ -85,7 +102,10 @@ const AdminPage = (props) => {
                         <label >ISBN</label>
                         <input type='number' min='0' ref={ isbn } />
                         <label >image</label>
-                        <input type='file' />
+                        <input type='file' onChange={(e) => onFileChange(e)} />
+                        {
+                            fileBase64 ? <p>image loaded )</p> : null
+                        }
                         <button 
                             style={{display: 'block', margin: 'auto', marginTop: '10px'}} 
                             onClick={(e) => addBookHandler(e)}
@@ -95,36 +115,46 @@ const AdminPage = (props) => {
                 </div>
             </div>
         </div>
+        <div style={{display: 'flex', justifyContent: 'space-evenly'}} >
+            <button style={{marginBottom: '10px'}} onClick={() => dispatch(getBooks())}>show all books</button>
+        </div>
         <div className={styles.TableDiv} >
             <table>
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                    <th style={{width: '20%'}} >count</th>
-                    <th>actions</th>
-                </tr>
-                {
-                    books.map(book => {
-                        return (
-                            <tr key={book.id} >
-                                <td style={{width: '20%'}} >{book.id}</td>
-                                <td>{book.title}</td>
-                                <td>
-                                    <div style={{display: 'flex', justifyContent: 'space-evenly', margin: 'auto' }}>
-                                        <p style={{margin: '0', width: '30%'}} >{book.count}</p>
-                                        <input style={{width: '20%'}} type='number' min='0' />
-                                        <button>save</button>
-                                    </div>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>title</th>
+                        <th style={{width: '20%'}} >count</th>
+                        <th>actions</th>
+                        <th>image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        books.map(book => {
+                            return (
+                                <tr key={book.id} >
+                                    <td style={{width: '20%'}} >{book.id}</td>
+                                    <td>{book.title}</td>
+                                    <td>
+                                        {book.count}
                                     </td>
-                                <td>
-                                    <button
-                                        onClick={() => dispatch(deletingBook(book.id))}
-                                    >delete</button>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
+                                    <td>
+                                        <div style={{display: 'flex', justifyContent: 'space-evenly'}} >
+                                            <button
+                                                onClick={() => dispatch(deletingBook(book.id))}
+                                            >delete</button>
+                                            <button onClick={() => [setShowBookDetail(true), setCurrentBook(book)]} >change</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src={book.img} width={'30px'} alt='cant found' />
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
             </table>
         </div>
         </>

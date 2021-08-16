@@ -21,3 +21,12 @@ export function requestAddBook(book) {
         data: book
     })
 }
+
+export function requestUpdateBook(id, changes) {
+    console.log('axios', id, changes)
+    return axios.request({
+        method: 'patch',
+        url: `https://bookstore-f3713-default-rtdb.firebaseio.com/books/${id}.json`,
+        data: changes
+    })
+}
