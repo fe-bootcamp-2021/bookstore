@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import createSagaMiddleware from "@redux-saga/core";
-import { watcherGetBooks } from "./sagas/rootSaga";
+import rootSaga from "./sagas/rootSaga";
 
 import books from './ducks/booksSlice';
 
@@ -16,6 +16,6 @@ const store = configureStore({
     middleware: [sagaMiddlware]
 })
 
-sagaMiddlware.run(watcherGetBooks)
+sagaMiddlware.run(rootSaga)
 
 export default store;

@@ -8,12 +8,26 @@ const booksSlice = createSlice({
     reducers: {
         getBooks() {},
         setBooks(state, action) {
-            state.push(...action.payload)
+            return action.payload
+        },
+        deletingBook() {},
+        deleteBook(state, action) {
+            const bookIndex = state.findIndex(book => book.id === action.payload)
+            state.splice(bookIndex, 1)
+            return state
+        },
+        addingBook(){},
+        addBook(state, action) {
+            state.push(action.payload) // immer retuns new object )
+        },
+        updatingBook() {},
+        updateBook(state, action) {
+            
         }
     }
 
 });
 
-export const { getBooks, setBooks } = booksSlice.actions;
+export const { getBooks, setBooks, deleteBook, deletingBook, addingBook, addBook } = booksSlice.actions;
 
 export default booksSlice.reducer;
