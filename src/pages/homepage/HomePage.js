@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Footer from "../../components/footer/Footer";
 import { getBooks } from "../../redux/ducks/booksSlice";
 
 const HomePage = (props) => {
@@ -28,6 +29,8 @@ const HomePage = (props) => {
                     )
                 })
             }
+
+            <Footer/>
         </>
 
     )
