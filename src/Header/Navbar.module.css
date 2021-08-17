@@ -1,0 +1,92 @@
+.MAINNAVBAR {
+  width: 100%;
+  min-height: 60px;
+  background-color: #b6c7ca;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.LOGO {
+  width: 100px;
+  height: 40px;
+  transition: 1s;
+}
+
+.LOGO:hover {
+  cursor: pointer;
+  transform: scale(1.2) rotate(360deg);
+  margin-left: 20px;
+}
+
+.DEPARTMENTS {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.NAVBARLOGGERS {
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  color: white;
+}
+
+.LOGGERDEPARTMENTS {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.DEPARTMENT {
+  margin: 10px;
+  transition: 0.4s;
+}
+
+.DEPARTMENT:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.MENUICON {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  transition: 0.4s;
+}
+
+.MENUICON:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.MOBILEMENU {
+  background-color: #b6c7ca;
+  color: white;
+}
+
+.MOBILEDEPARTMENT {
+  margin: 0px;
+  transition: 0.4s;
+}
+
+.MOBILEDEPARTMENT:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+@media screen and (max-width: 600px) {
+  .MENUICON {
+    display: block;
+  }
+
+  .LOGGERDEPARTMENTS {
+    display: none;
+  }
+}
