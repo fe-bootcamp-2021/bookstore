@@ -1,11 +1,12 @@
-import Navbar from './Header/Navbar';
-import './App.css';
+import BookStore from "./BookStore";
+import Navbar from "./Header/Navbar";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Navbar />
-    </div>
+      <BookStore />
+    </>
   );
 }
 
