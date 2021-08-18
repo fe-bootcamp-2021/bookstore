@@ -42,13 +42,13 @@ export default function Footer() {
         <p>Phone Number:</p>
         <a href="tel:+37455282828">
           {" "}
-          <FiPhoneCall style={{ marginRight: "8px" }} /> +374 55 28 28 28
+         <FiPhoneCall style={{ marginRight: "8px" }} /> +374 55 28 28 28
         </a>
         <hr></hr>
         <p>E-mail:</p>
         <a href="mailto:luysbookstore@gmail.com">
           {" "}
-          <GoMail style={{ marginRight: "8px" }} /> luysbookstore@gmail.com
+         <GoMail style={{ marginRight: "8px" }} /> luysbookstore@gmail.com
         </a>
         <hr></hr>
       </div>
