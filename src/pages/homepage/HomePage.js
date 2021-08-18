@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../../components/footer/Footer";
-import Navbar from "../../Header/Navbar";
+import Navbar from "../../components/Header/Navbar";
 import { getBooks } from "../../redux/ducks/booksSlice";
 
 const HomePage = (props) => {

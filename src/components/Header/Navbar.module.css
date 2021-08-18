@@ -1,4 +1,4 @@
-.MAINNAVBAR {
+.mainNavbar {
   width: 100%;
   min-height: 60px;
   background-color: #b6c7ca;
@@ -8,19 +8,19 @@
   padding: 10px;
 }
 
-.LOGO {
+.logo {
   width: 100px;
   height: 40px;
   transition: 1s;
 }
 
-.LOGO:hover {
+.logo:hover {
   cursor: pointer;
   transform: scale(1.2) rotate(360deg);
   margin-left: 20px;
 }
 
-.DEPARTMENTS {
+.departments {
   width: 60%;
   display: flex;
   justify-content: space-evenly;
@@ -29,7 +29,7 @@
   color: white;
 }
 
-.NAVBARLOGGERS {
+.navbarLoggers {
   width: 20%;
   display: flex;
   flex-wrap: wrap;
@@ -37,19 +37,19 @@
   color: white;
 }
 
-.LOGGERDEPARTMENTS {
+.loggerDepartments {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.DEPARTMENT {
+.department {
   margin: 10px;
   transition: 0.4s;
 }
 
-.DEPARTMENT:hover {
+.department:hover {
   cursor: pointer;
   color: gray;
 }
