@@ -54,39 +54,39 @@
   color: gray;
 }
 
-.MENUICON {
+.menuIcon {
   width: 50px;
   height: 50px;
   margin-left: 10px;
   transition: 0.4s;
 }
 
-.MENUICON:hover {
+.menuIcon:hover {
   cursor: pointer;
   transform: scale(1.2);
 }
 
-.MOBILEMENU {
+.mobileMenu {
   background-color: #b6c7ca;
   color: white;
 }
 
-.MOBILEDEPARTMENT {
+.mobileDepartment {
   margin: 0px;
   transition: 0.4s;
 }
 
-.MOBILEDEPARTMENT:hover {
+.mobileDepartment:hover {
   cursor: pointer;
   color: gray;
 }
 
 @media screen and (max-width: 600px) {
-  .MENUICON {
+  .menuIcon {
     display: block;
   }
 
-  .LOGGERDEPARTMENTS {
+  .loggerDepartments {
     display: none;
   }
 }
