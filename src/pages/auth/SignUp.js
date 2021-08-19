@@ -6,14 +6,14 @@ import styles from './Auth.module.css'
 
 const SignUp = () => {
 
-  const handleSignIn = (values) => {
+  const handleSignUp = (values) => {
     console.log(values)
   }
 
   const {handleSubmit,errors,touched,getFieldProps} = useFormik({
     initialValues: signUpInitValues,
     validationSchema: signUpSchema,
-    onSubmit: handleSignIn,
+    onSubmit: handleSignUp,
   });
   return (
     <form onSubmit={handleSubmit}>

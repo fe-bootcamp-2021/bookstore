@@ -8,14 +8,14 @@ import {
 import styles from "./Auth.module.css";
 
 const SignIn = () => {
-  const handleSign = (values) => {
+  const handleSignIn = (values) => {
     console.log(values);
   };
 
   const { handleSubmit, errors, touched, getFieldProps } = useFormik({
     initialValues: signInInitValues,
     validationSchema: signInSchema,
-    onSubmit: handleSign,
+    onSubmit: handleSignIn,
   });
   return (
     <form onSubmit={handleSubmit}>
