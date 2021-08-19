@@ -16,7 +16,7 @@
 
 .logo:hover {
   cursor: pointer;
-  transform: scale(1.2) rotate(360deg);
+  transform: scale(1.2);
   margin-left: 20px;
 }
 
@@ -68,6 +68,9 @@
 
 .cartContainer {
   position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 60px;
 }
 
 .countDiv {
@@ -108,6 +111,7 @@
   background: none;
   transition: 0.4s;
   color: white;
+  padding: 10px 20px;
 }
 
 .logSignButton:hover {
