@@ -55,8 +55,8 @@
 }
 
 .menuIcon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   margin-left: 10px;
   transition: 0.4s;
 }
@@ -66,19 +66,54 @@
   transform: scale(1.2);
 }
 
+.cartContainer {
+  position: relative;
+}
+
+.countDiv {
+  position: absolute;
+  color: white;
+  background-color: tomato;
+  border-radius: 50%;
+  padding-left: 6px;
+  padding-right: 6px;
+  top: 0;
+  left: 0;
+}
+
 .mobileMenu {
   background-color: #b6c7ca;
   color: white;
 }
 
+.logBtnsContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .mobileDepartment {
+  text-align: center;
   margin: 0px;
   transition: 0.4s;
+  margin-bottom: 20px;
 }
 
 .mobileDepartment:hover {
   cursor: pointer;
   color: gray;
+}
+
+.logSignButton {
+  border: 0;
+  background: none;
+  transition: 0.4s;
+  color: white;
+}
+
+.logSignButton:hover {
+  background-color: rgba(218, 212, 212, 0.6);
+  color: black;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
