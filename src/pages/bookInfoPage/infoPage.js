@@ -18,7 +18,7 @@ function BookInfo(props) {
 
   // console.log(books);
   let myBook = books.find((book) => book.id === id);
-  return (
+  return myBook ? (
     <>
       <div className={styles.container}>
         <div className={styles.upperBody}>
@@ -61,6 +61,8 @@ function BookInfo(props) {
         </div>
       </div>
     </>
+  ) : (
+    <h3>Loading</h3>
   );
 }
 export default BookInfo;
