@@ -6,7 +6,8 @@
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  position: fixed;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -87,7 +88,6 @@
 
 .mobileMenu {
   width: 100%;
-  margin-top: 80px;
   background-color: #b6c7ca;
   color: white;
   position: fixed;
