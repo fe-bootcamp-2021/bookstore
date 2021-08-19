@@ -13,9 +13,9 @@ export default function Navbar() {
   const [mobileMenuIsHidden, setMobileMenu] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
+  window.addEventListener("resize", () => {
     setWindowWidth(window.innerWidth);
-  }, [window.innerWidth]);
+  });
 
   return (
     <>
@@ -55,7 +55,10 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div hidden={mobileMenuIsHidden} className={styles.mobileMenu}>
+      <div
+        hidden={mobileMenuIsHidden || windowWidth > 600}
+        className={styles.mobileMenu}
+      >
         <h4 className={styles.mobileDepartment}>BOOKS</h4>
         <h4 className={styles.mobileDepartment}>SALE</h4>
         <h4 className={styles.mobileDepartment}>NEWS</h4>
