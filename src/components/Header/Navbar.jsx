@@ -5,17 +5,26 @@ import menuIcon from "../../assets/images/menu-icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 
 import styles from "./Navbar.module.css";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
   const [mobileMenuIsHidden, setMobileMenu] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  window.addEventListener("resize", () => {
+    setWindowWidth(window.innerWidth);
+  });
 
   return (
     <>
       <div className={styles.mainNavbar}>
-        <div>
-          <img className={styles.logo} src={logo} />
-        </div>
+        <Link to="/">
+          <div>
+            <img className={styles.logo} src={logo} />
+          </div>
+        </Link>
         <div
           onClick={() => setMobileMenu(!mobileMenuIsHidden)}
           hidden={burgerMenuIconHidden}
@@ -23,6 +32,13 @@ export default function Navbar() {
         >
           <img width="30px" hidden={!mobileMenuIsHidden} src={menuIcon} />
           <img width="30px" hidden={mobileMenuIsHidden} src={closeIcon} />
+        </div>
+        <div className={styles.cartContainer}>
+          <img
+            height="100%"
+            src="/static/media/shopping-cart(1).95534b44.svg"
+          ></img>
+          <div className={styles.countDiv}>0</div>
         </div>
 
         <div className={styles.loggerDepartments}>
@@ -32,20 +48,17 @@ export default function Navbar() {
             <h4 className={styles.department}>NEWS</h4>
             <h4 className={styles.department}>ABOUT</h4>
           </div>
-          <div className={styles.cartContainer}>
-            <img
-              height="100%"
-              src="/static/media/shopping-cart(1).95534b44.svg"
-            ></img>
-            <div className={styles.countDiv}>0</div>
-          </div>
+
           <div className={styles.navbarLoggers}>
             <button className={styles.logSignButton}>LOG IN</button>
             <button className={styles.logSignButton}>SIGN UP</button>
           </div>
         </div>
       </div>
-      <div hidden={mobileMenuIsHidden} className={styles.mobileMenu}>
+      <div
+        hidden={mobileMenuIsHidden || windowWidth > 600}
+        className={styles.mobileMenu}
+      >
         <h4 className={styles.mobileDepartment}>BOOKS</h4>
         <h4 className={styles.mobileDepartment}>SALE</h4>
         <h4 className={styles.mobileDepartment}>NEWS</h4>
