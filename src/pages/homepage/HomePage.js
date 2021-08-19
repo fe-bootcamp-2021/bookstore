@@ -16,7 +16,6 @@ const HomePage = (props) => {
 
   return (
     <>
-      <Navbar />
       <h3>HomePage</h3>
       <button onClick={() => dispatch(getBooks())}>fetch books</button>
       {books.map((book) => {
@@ -32,8 +31,6 @@ const HomePage = (props) => {
           </Link>
         );
       })}
-
-      <Footer />
     </>
   );
 };
