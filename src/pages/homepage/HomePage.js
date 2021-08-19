@@ -20,7 +20,7 @@ const HomePage = (props) => {
       <button onClick={() => dispatch(getBooks())}>fetch books</button>
       {books.map((book) => {
         return (
-          <Link to={`/${book.id}`}>
+          <Link to={`/books/${book.id}`}>
             <div
               key={book.id}
               style={{ width: "300px", border: "1px solid black" }}
