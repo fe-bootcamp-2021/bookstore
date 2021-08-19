@@ -15,7 +15,6 @@ function BookInfo(props) {
   let myBook = books.find((book) => book.id === props.id);
   return (
     <div>
-      <Navbar />
       <div className={styles.container}>
         <div className={styles.image}>
           <img src={myBook.img} />
