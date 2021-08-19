@@ -12,11 +12,7 @@ const Routes = (props) => {
       <Route exact path="/admin" children={<AdminPage />} />
       <Route exact path="/signUp" children={<SignUp />} />
       <Route exact path="/signIn" children={<SignIn />} />
-      <Route
-        exact
-        path="/:bookId"
-        render={({ match }) => <BookInfo id={match.params.bookId} />}
-      />
+      <Route path="/books/:bookId" children={<BookInfo />} />
       <Route exact path="/" children={<HomePage />} />
     </Switch>
   );
