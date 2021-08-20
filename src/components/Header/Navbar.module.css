@@ -8,6 +8,7 @@
   padding: 10px;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .logo {
@@ -91,6 +92,7 @@
   background-color: #b6c7ca;
   color: white;
   position: fixed;
+  z-index: 1;
 }
 
 .logBtnsContainer {
