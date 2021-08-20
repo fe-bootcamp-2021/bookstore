@@ -62,7 +62,9 @@ function BookInfo(props) {
       </div>
     </>
   ) : (
-    <h3>Loading...</h3>
+    <div className={styles.loader}>
+      <img src="https://cdn.dribbble.com/users/4179244/screenshots/7430038/media/34d6717bbdde1e753889d3625fb16e29.gif" />
+    </div>
   );
 }
 export default BookInfo;
