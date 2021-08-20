@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/images/logo.jpg";
 import menuIcon from "../../assets/images/menu-icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 
 import styles from "./Navbar.module.css";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
   const [mobileMenuIsHidden, setMobileMenu] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  window.addEventListener("resize", () => {
-    setWindowWidth(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth);
+      });
+    };
   });
 
   return (
