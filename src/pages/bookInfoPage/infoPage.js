@@ -63,7 +63,7 @@ function BookInfo(props) {
     </>
   ) : (
     <div className={styles.loader}>
-      <img src="https://cdn.dribbble.com/users/4179244/screenshots/7430038/media/34d6717bbdde1e753889d3625fb16e29.gif" />
+      <img src="https://i.pinimg.com/originals/b9/1e/11/b91e1131ca20f6369aa68d21cb3a8960.gif" />
     </div>
   );
 }
