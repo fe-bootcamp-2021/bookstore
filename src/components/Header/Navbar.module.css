@@ -92,6 +92,7 @@
   background-color: #b6c7ca;
   color: white;
   position: fixed;
+  z-index: 1;
 }
 
 .logBtnsContainer {
