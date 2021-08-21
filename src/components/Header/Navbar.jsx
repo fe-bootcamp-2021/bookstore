@@ -16,14 +16,13 @@ export default function Navbar() {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
     });
-
     return () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth);
       });
     };
   });
-
+  //
   return (
     <>
       <div className={styles.mainNavbar}>
@@ -57,8 +56,8 @@ export default function Navbar() {
           </div>
 
           <div className={styles.navbarLoggers}>
-            <button className={styles.logSignButton}>LOG IN</button>
-            <button className={styles.logSignButton}>SIGN UP</button>
+            <button className={styles.logSignButton}><Link to='/signIn'> LOG IN</Link></button>
+            <button className={styles.logSignButton}> <Link to='/signUp'> SIGN UP</Link></button>
           </div>
         </div>
       </div>
@@ -71,8 +70,8 @@ export default function Navbar() {
         <h4 className={styles.mobileDepartment}>NEWS</h4>
         <h4 className={styles.mobileDepartment}>ABOUT</h4>
         <div className={styles.logBtnsContainer}>
-          <button className={styles.logSignButton}>LOG IN</button>
-          <button className={styles.logSignButton}>SIGN UP</button>
+          <button className={styles.logSignButton}></button>
+          <button className={styles.logSignButton}><Link to='/signUp'> SIGN UP</Link></button>
         </div>
       </div>
     </>
