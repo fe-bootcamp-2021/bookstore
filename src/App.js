@@ -1,6 +1,4 @@
-import BookStore from './BookStore';
-
-
+import BookStore from "./BookStore";
 
 function App() {
   return (
