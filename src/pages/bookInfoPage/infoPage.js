@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import styles from "../bookInfoPage/bookInfo.module.css";
 import shopCart from "../../assets/images/shopping-cart(1).svg";
 import { useRouteMatch } from "react-router-dom";
-import MyLoader from "../../components/bookLoader/loader";
 
 function BookInfo(props) {
   const match = useRouteMatch("/books/:bookId");
@@ -63,7 +62,9 @@ function BookInfo(props) {
       </div>
     </>
   ) : (
-    <MyLoader />
+    <div className={styles.loader}>
+      <img src="https://cdn.dribbble.com/users/4179244/screenshots/7430038/media/34d6717bbdde1e753889d3625fb16e29.gif" />
+    </div>
   );
 }
 export default BookInfo;
