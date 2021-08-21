@@ -49,10 +49,18 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <h4 className={styles.department}>BOOKS</h4>
-            <h4 className={styles.department}>SALE</h4>
-            <h4 className={styles.department}>NEWS</h4>
-            <h4 className={styles.department}>ABOUT</h4>
+            <Link to="/books">
+              <h4 className={styles.department}>BOOKS</h4>
+            </Link>
+            <Link to="sale">
+              <h4 className={styles.department}>SALE</h4>
+            </Link>
+            <Link to="/news">
+              <h4 className={styles.department}>NEWS</h4>
+            </Link>
+            <Link to="/about">
+              <h4 className={styles.department}>ABOUT</h4>
+            </Link>
           </div>
 
           <div className={styles.navbarLoggers}>
