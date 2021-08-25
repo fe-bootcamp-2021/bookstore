@@ -8,12 +8,14 @@ import AboutPage from "../pages/about/about";
 import BookInfo from "../pages/bookInfoPage/infoPage";
 import SignUp from "../pages/auth/SignUp";
 import SignIn from '../pages/auth/SignIn';
+import News from "../pages/news/News";
 
 const Routes = (props) => {
   return (
     <Switch>
       <Route exact path="/admin" children={<AdminPage />} />
       <Route exact path="/about" children={<AboutPage />} />
+      <Route exact path="/news" children={<News />} />
       <Route exact path="/" children={<HomePage />} />
       <Route exact path="/cards" children={<Cards />} />
       <Route exact path="/signUp" children={<SignUp />} />

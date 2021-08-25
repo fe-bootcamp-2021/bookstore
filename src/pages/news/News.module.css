@@ -1,0 +1,27 @@
+
+.news {
+  list-style-type: none;
+}
+.newsItem {
+  padding: 40px;
+}
+.newsItemContent {
+  display: flex;
+  flex-direction: row;
+}
+.desc {
+  text-align: justify;
+}
+.newsItemPart{
+    padding: 20px;
+    width: 50%;
+}
+.title {
+  text-align: center;
+}
+/* .line{
+    height: 1px;
+    width: 100%;
+    background-color: grey;
+    margin-top: 20px;
+} */
