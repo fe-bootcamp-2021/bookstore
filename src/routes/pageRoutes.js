@@ -7,6 +7,7 @@ import AdminPage from "../pages/adminpage/AdminPage";
 import AuthPage from "../pages/authpage/AuthPage";
 import BookDetailPage from "../pages/bookdetailpage/BookDetailPage";
 import Cart from "../components/Cart/Cart";
+import AboutPage from "../pages/about/about";
 
 const Routes = (props) => {
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -29,7 +30,7 @@ const Routes = (props) => {
       <Route exact path="/" children={<HomePage />} />
       <Route path="/auth" children={<AuthPage />} />
       <Route path="/book/:id" children={<BookDetailPage />} />
-      <Route path="/cart" children={<Cart />} />
+      <Route path="/about" children={<AboutPage />} />
     </Switch>
   );
 };
