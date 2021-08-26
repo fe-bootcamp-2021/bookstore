@@ -5,6 +5,7 @@ import { autoSigningIn, signOut } from "./redux/ducks/usersSlice";
 
 import Routes from "./routes/pageRoutes";
 import Navbar from "./components/Header/Navbar";
+import Footer from './components/Footer/Footer'
 
 const BookStore = (props) => {
   // const currentUser = useSelector(state => state.users.currentUser)
@@ -37,6 +38,7 @@ const BookStore = (props) => {
     <BrowserRouter>
       <Navbar />
       <Routes />
+      <Footer />
     </BrowserRouter>
   );
 };
