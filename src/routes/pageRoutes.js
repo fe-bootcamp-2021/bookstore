@@ -28,7 +28,7 @@ const Routes = (props) => {
       />
       <Route exact path="/" children={<HomePage />} />
       <Route path="/auth" children={<AuthPage />} />
-      <Route path="/auth" children={<AboutPage />} />
+      <Route path="/about" children={<AboutPage />} />
       <Route path="/book/:id" children={<BookDetailPage />} />
     </Switch>
   );
