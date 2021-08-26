@@ -1,32 +1,35 @@
-import axios from "axios";
+import axios from 'axios';
+
+const dbUrl = process.env.REACT_APP_FIREBASE_DB_URL
 
 export function requestGetBooks() {
-  return axios.request({
-    method: "get",
-    url: "https://bookstore-f3713-default-rtdb.firebaseio.com/books.json",
-  });
+    console.log(process.env)
+    return axios.request({
+        method: 'get',
+        url: `${dbUrl}/books.json`
+    })
 }
 
-export function requestDeleteBook(id) {
-  return axios.request({
-    method: "delete",
-    url: `https://bookstore-f3713-default-rtdb.firebaseio.com/books/${id}.json`,
-  });
+export function requestDeleteBook(id, idToken) {
+    return axios.request({
+        method: 'delete',
+        url: `${dbUrl}/books/${id}.json?auth=${idToken}`
+    })
 }
 
-export function requestAddBook(book) {
-  return axios.request({
-    method: "post",
-    url: "https://bookstore-f3713-default-rtdb.firebaseio.com/books.json",
-    data: book,
-  });
+export function requestAddBook(book, idToken) {
+    return axios.request({
+        method: 'post',
+        url: `${dbUrl}/books.json?auth=${idToken}`,
+        data: book
+    })
 }
 
-export function requestUpdateBook(id, changes) {
-  console.log("axios", id, changes);
-  return axios.request({
-    method: "patch",
-    url: `https://bookstore-f3713-default-rtdb.firebaseio.com/books/${id}.json`,
-    data: changes,
-  });
+export function requestUpdateBook(id, changes, idToken) {
+    console.log('token update request', idToken)
+    return axios.request({
+        method: 'put',
+        url: `${dbUrl}/books/${id}.json?auth=${idToken}`,
+        data: changes
+    })
 }

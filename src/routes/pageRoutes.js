@@ -1,26 +1,23 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { adminIds } from '../pages/authpage/adminIds';
 
-import Cards from "../Cards/Cards";
-import HomePage from "../pages/homepage/HomePage";
-import AdminPage from "../pages/adminpage/AdminPage";
-
-import AboutPage from "../pages/about/about";
-import BookInfo from "../pages/bookInfoPage/infoPage";
-import SignUp from "../pages/auth/SignUp";
-import SignIn from '../pages/auth/SignIn';
+import HomePage from '../pages/homepage/HomePage';
+import AdminPage from '../pages/adminpage/AdminPage';
+import AuthPage from '../pages/authpage/AuthPage';
+import BookDetailPage from '../pages/bookdetailpage/BookDetailPage';
 
 const Routes = (props) => {
-  return (
-    <Switch>
-      <Route exact path="/admin" children={<AdminPage />} />
-      <Route exact path="/about" children={<AboutPage />} />
-      <Route exact path="/" children={<HomePage />} />
-      <Route exact path="/cards" children={<Cards />} />
-      <Route exact path="/signUp" children={<SignUp />} />
-      <Route exact path="/signIn" children={<SignIn />} />
-      <Route path="/books/:bookId" children={<BookInfo />} />
-    </Switch>
-  );
-};
+    const currentUser = useSelector(state => state.users.currentUser)
+    
+    return (
+        <Switch>
+            <Route exact path='/admin' children={ currentUser && currentUser.isAdmin && adminIds.includes(currentUser.localId) ?  <AdminPage/> : () => <h3>You must be admin to view this page</h3>} />
+            <Route exact path='/' children={<HomePage/>} />
+            <Route path='/auth' children={<AuthPage />} />
+            <Route path='/book/:id' children={<BookDetailPage />} />
+        </Switch>
+    )
+}
 
 export default Routes;
