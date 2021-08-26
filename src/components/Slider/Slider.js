@@ -1,9 +1,9 @@
 import React from "react";
 import "./Slider.css";
 import { useState, useEffect } from "react";
-import slide1 from "../about/images/bookstore.jpg";
-import slide2 from "../about/images/panorama.jpg";
-import slide3 from "../about/images/azg.jpg";
+import slide1 from "../../pages/about/images/bookstore.jpg";
+import slide2 from "../../pages/about/images/panorama.jpg";
+import slide3 from "../../pages/about/images/azg.jpg";
 
 const img = [
   <img alt="" key={slide1} src={slide1} width="100%" object-fit="cover"></img>,

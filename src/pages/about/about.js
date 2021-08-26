@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./about.module.css";
-import Slider from "./Slider";
+
 import panorama from "../about/images/panorama.jpg";
 import azg from "../about/images/azg.jpg";
+import Slider from "../../components/Slider/Slider";
 
 const AboutPage = () => {
   return (
