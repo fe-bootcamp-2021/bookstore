@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { autoSigningIn, signOut } from './redux/ducks/usersSlice';
 
 import Routes from './routes/pageRoutes';
+import Footer from './components/Footer/Footer'
 
 const BookStore = (props) => {
 
@@ -36,6 +37,7 @@ const BookStore = (props) => {
     return (
         <BrowserRouter>
             <Routes />
+            <Footer />
         </BrowserRouter>
     )
 }
