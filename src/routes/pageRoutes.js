@@ -6,6 +6,7 @@ import HomePage from "../pages/homepage/HomePage";
 import AdminPage from "../pages/adminpage/AdminPage";
 import AuthPage from "../pages/authpage/AuthPage";
 import BookDetailPage from "../pages/bookdetailpage/BookDetailPage";
+import Cart from "../components/Cart/Cart";
 import AboutPage from "../pages/about/about";
 
 const Routes = (props) => {
@@ -28,8 +29,8 @@ const Routes = (props) => {
       />
       <Route exact path="/" children={<HomePage />} />
       <Route path="/auth" children={<AuthPage />} />
-      <Route path="/about" children={<AboutPage />} />
       <Route path="/book/:id" children={<BookDetailPage />} />
+      <Route path="/about" children={<AboutPage />} />
     </Switch>
   );
 };
