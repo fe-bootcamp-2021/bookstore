@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signOut } from "../../redux/ducks/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,9 +14,17 @@ export default function Navbar() {
   const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
   const [mobileMenuIsHidden, setMobileMenu] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [cartItems, setCartItem] = useState([]);
 
   const currentUser = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    // const tempCartItems = JSON.parse(localStorage.getItem("cartItem"));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -29,7 +37,16 @@ export default function Navbar() {
       });
     };
   });
-  //
+
+  const cartClickhandler = () => {
+    if (currentUser) {
+      history.push("/cart");
+    } else {
+      history.push("/auth");
+      setCartItem([...cartItems, { 1: 1 }]);
+    }
+  };
+
   return (
     <>
       <div className={styles.mainNavbar}>
@@ -46,12 +63,12 @@ export default function Navbar() {
           <img width="30px" hidden={!mobileMenuIsHidden} src={menuIcon} />
           <img width="30px" hidden={mobileMenuIsHidden} src={closeIcon} />
         </div>
-        <Link to="/cart">
-          <div className={styles.cartContainer}>
-            <img height="100%" src={cartIcon}></img>
-            <div className={styles.countDiv}>0</div>
-          </div>
-        </Link>
+        {/* <Link> */}
+        <div onClick={cartClickhandler} className={styles.cartContainer}>
+          <img height="100%" src={cartIcon}></img>
+          <div className={styles.countDiv}>{cartItems.length}</div>
+        </div>
+        {/* </Link> */}
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>

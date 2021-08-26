@@ -1,5 +1,4 @@
 .mainNavbar {
-  width: 100%;
   min-height: 60px;
   background-color: #b6c7ca;
   display: flex;
@@ -84,6 +83,10 @@
   width: 40px;
   height: 40px;
   margin-left: 60px;
+}
+
+.cartContainer:hover {
+  cursor: pointer;
 }
 
 .countDiv {
