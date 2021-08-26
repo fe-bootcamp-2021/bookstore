@@ -1,48 +1,142 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory, useParams } from 'react-router-dom';
-import { makingOrder } from '../../redux/ducks/ordersSlice';
-import { getBooks } from '../../redux/ducks/booksSlice';
-
-import styles from './BookDetailPage.module.css';
-
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useHistory, useParams } from "react-router-dom";
+import { makingOrder } from "../../redux/ducks/ordersSlice";
+import { getBooks } from "../../redux/ducks/booksSlice";
+import shopCart from "../../assets/svg/shopping-cart(1).svg";
+import styles from "../bookdetailpage/BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
-    const [quantity, setQuantity] = useState(1)
-    const dispatch = useDispatch()
-    const books = useSelector(state => state.books)
-    const history = useHistory()
-    const currentUser = useSelector(state => state.users.currentUser)
-    
-    const {id}= useParams() 
-    // const book = useLocation().state.book
-    const book = books.find(book => book.id === id)
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books);
+  const history = useHistory();
+  const currentUser = useSelector((state) => state.users.currentUser);
 
+  const { id } = useParams();
+  // const book = useLocation().state.book
+  const book = books.find((book) => book.id === id);
 
-
-    const plusMinusHandler = (type) => {
-        let count;
-        switch(type) {
-            case 'plus':
-                count = quantity + 1 < +book.count ? quantity + 1 : +book.count
-                return setQuantity(count)
-            case 'minus':
-                count = quantity - 1 > 1 ? quantity - 1 : 1
-                return setQuantity(count)
-        }
+  const plusMinusHandler = (type) => {
+    let count;
+    switch (type) {
+      case "plus":
+        count = quantity + 1 < +book.count ? quantity + 1 : +book.count;
+        return setQuantity(count);
+      case "minus":
+        count = quantity - 1 > 1 ? quantity - 1 : 1;
+        return setQuantity(count);
     }
+  };
 
-    const orderingHandler = () => {
-        if (!book.count || !currentUser) {
-            return
-        }
-        dispatch(makingOrder({user: currentUser, book, quantity}))
+  const orderingHandler = () => {
+    if (!book.count || !currentUser) {
+      return;
     }
+    dispatch(makingOrder({ user: currentUser, book, quantity }));
+  };
 
-    return (
-        book ?
-        <div className={styles.BookDetailPage} >
+  return book ? (
+    <>
+      <div className={styles.container}>
+        <div className={styles.upperBody}>
+          <h1>{book.title}</h1>
+          <h3>{book.writer}(author)</h3>
+        </div>
+        <div className={styles.image}>
+          <img src={book.img} />
+        </div>
+        <div className={styles.body}>
+          <h1>{book.title}</h1>
+          <h3>{book.writer}(author)</h3>
+          <div className={styles.orderButton}>
+            <p>Quantity of order:</p>
+            <button onClick={() => plusMinusHandler("minus")}>-</button>
+            {quantity}
+            <button onClick={() => plusMinusHandler("plus")}>+</button>
+            <button className={styles.cartButton}>
+              <img src={shopCart} />
+              Add to Cart
+            </button>
+          </div>
+          <button
+            disabled={!currentUser || !book.count}
+            onClick={orderingHandler}
+          >
+            {!book.count
+              ? "out of order"
+              : currentUser
+              ? "order"
+              : "please login to order"}
+          </button>
+          <div>
+            <h2>Description</h2>
+            <p className={styles.align}>{book.genre}</p>
+          </div>
+          <div>
+            <h2>Product Details</h2>
+            <p>Published year:{book.yearPublished}</p>
+            <p>Number of books available:{book.count}</p>
+            <p>
+              Price: {book.price}
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Armenian_dram_sign.svg"
+                style={{ height: "12px", width: "12px" }}
+              />
+            </p>
+          </div>
+        </div>
+        <div className={styles.lowerBody}>
+          <div className={styles.orderButton}>
+            <p>Quantity of order:</p>
+            <button onClick={() => plusMinusHandler("minus")}>-</button>
+            {quantity}
+            <button onClick={() => plusMinusHandler("plus")}>+</button>
+            <button className={styles.cartButton}>
+              <img src={shopCart} />
+              Add to Cart
+            </button>
+          </div>
+          <button
+            disabled={!currentUser || !book.count}
+            onClick={orderingHandler}
+          >
+            {!book.count
+              ? "out of order"
+              : currentUser
+              ? "order"
+              : "please login to order"}
+          </button>
+          <div>
+            <h2>Description</h2>
+            <p className={styles.align}>{book.genre}</p>
+          </div>
+          <div>
+            <h2>Product Details</h2>
+            <p>Published year:{book.yearPublished}</p>
+            <p>Number of books available:{book.count}</p>
+            <p>
+              Price: {book.price}
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Armenian_dram_sign.svg"
+                style={{ height: "12px", width: "12px" }}
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  ) : (
+    <div className={styles.loader}>
+      <img src="https://i.pinimg.com/originals/b9/1e/11/b91e1131ca20f6369aa68d21cb3a8960.gif" />
+    </div>
+  );
+};
+
+export default BookDetailPage;
+
+/* <div className={styles.BookDetailPage} >
             <h3>title: {book.title}</h3>
             <h3>writer: {book.writer}</h3>
             <h3>yearPublished: {book.yearPublished}</h3>
@@ -57,9 +151,4 @@ const BookDetailPage = (props) => {
                 onClick={orderingHandler}
             >{!book.count ? 'out of order' : currentUser ?  'order' : 'please login to order'}</button>
         </div> : <h3>Loading...</h3>
-    )
-}
-
-export default BookDetailPage;
-
-
+    )*/
