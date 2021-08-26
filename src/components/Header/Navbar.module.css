@@ -78,7 +78,7 @@
   transform: scale(1.2);
 }
 
-.cartContainer {
+/* .cartContainer {
   position: relative;
   width: 40px;
   height: 40px;
@@ -98,7 +98,7 @@
   padding-right: 6px;
   top: 0;
   left: 0;
-}
+} */
 
 .mobileMenu {
   width: 100%;

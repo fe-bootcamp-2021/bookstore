@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/logo.jpg";
 import menuIcon from "../../assets/images/menu-icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
-import cartIcon from "../../assets/images/shopping-cart(1).svg";
+// import cartIcon from "../../assets/images/shopping-cart.svg";
 
 import styles from "./Navbar.module.css";
+import Cart from "../Cart/Cart";
 
 export default function Navbar() {
   const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
@@ -38,14 +39,14 @@ export default function Navbar() {
     };
   });
 
-  const cartClickhandler = () => {
-    if (currentUser) {
-      history.push("/cart");
-    } else {
-      history.push("/auth");
-      setCartItem([...cartItems, { 1: 1 }]);
-    }
-  };
+  // const cartClickhandler = () => {
+  //   if (currentUser) {
+  //     history.push("/cart");
+  //   } else {
+  //     history.push("/auth");
+  //     setCartItem([...cartItems, { 1: 1 }]);
+  //   }
+  // };
 
   return (
     <>
@@ -64,10 +65,7 @@ export default function Navbar() {
           <img width="30px" hidden={mobileMenuIsHidden} src={closeIcon} />
         </div>
         {/* <Link> */}
-        <div onClick={cartClickhandler} className={styles.cartContainer}>
-          <img height="100%" src={cartIcon}></img>
-          <div className={styles.countDiv}>{cartItems.length}</div>
-        </div>
+        <Cart />
         {/* </Link> */}
 
         <div className={styles.loggerDepartments}>
