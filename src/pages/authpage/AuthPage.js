@@ -3,16 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signingUp, signingIn, signOut } from "../../redux/ducks/usersSlice";
 
-import { adminIds } from "./adminIds";
-
+import { adminIds } from "./AdminIds";
+import * as constants from "../../constants/constants";
 import styles from "./AuthPage.module.css";
 
 const AuthPage = (props) => {
   const [signupMode, setSignupMode] = useState(false);
   const history = useHistory();
-
-  const adminPageUrl = "/admin";
-  const homePageUrl = "/";
 
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -26,8 +23,8 @@ const AuthPage = (props) => {
   if (currentUser) {
     history.push(
       currentUser.isAdmin && adminIds.includes(currentUser.localId)
-        ? adminPageUrl
-        : homePageUrl
+        ? constants.adminPageUrl
+        : constants.homePageUrl
     );
   }
 
