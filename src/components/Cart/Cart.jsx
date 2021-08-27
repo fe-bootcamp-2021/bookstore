@@ -29,7 +29,7 @@ export default function Cart() {
         <div className={styles.countDiv}>{cartItems.length}</div>
       </div>
 
-      {showCartContainer ? <div className={styles.cartContainer}></div> : null}
+      {showCartContainer && <div className={styles.cartContainer}></div>}
     </>
   );
 }
