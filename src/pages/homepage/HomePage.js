@@ -4,6 +4,7 @@ import { getBooks } from "../../redux/ducks/booksSlice";
 import { signOut } from "../../redux/ducks/usersSlice";
 
 import { makingOrder } from "../../redux/ducks/ordersSlice";
+
 import { Link, useHistory } from "react-router-dom";
 
 const HomePage = (props) => {
@@ -39,8 +40,16 @@ const HomePage = (props) => {
             <p>{book.writer}</p>
             <p>{book.price}</p>
 
+            {/*<Link to={`/book/${book.id}`} >
+                                <button
+                                    // onClick={() => dispatch(makingOrder({user: currentUser, book, quantity: 5}))}
+                                    // onClick={() => history.push(`/book/${book.id}`)}
+                                >see more
+                                </button>
+                            </Link>*/}
             <button
-
+              // onClick={() => dispatch(makingOrder({user: currentUser, book, quantity: 5}))}
+              // onClick={() => history.push(`/book/${book.id}`)}
               onClick={() => bookCardClickHandler(book)}
             >
               see more
