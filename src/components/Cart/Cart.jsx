@@ -13,12 +13,6 @@ export default function Cart() {
 
   const history = useHistory();
 
-  //   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-
-  //   const cartClickhandler = () => {
-  //     setShowCartContainer(!showCartContainer)
-  //   };
-
   return (
     <>
       <div
@@ -29,7 +23,14 @@ export default function Cart() {
         <div className={styles.countDiv}>{cartItems.length}</div>
       </div>
 
-      {showCartContainer ? <div className={styles.cartContainer}></div> : null}
+      {showCartContainer && (
+        <div className={styles.cartContainer}>
+          <h2>Your Bookstore Cart</h2>
+          <div className={styles.cartItem}>
+            <h3>I am a title</h3>
+          </div>
+        </div>
+      )}
     </>
   );
 }

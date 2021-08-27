@@ -21,11 +21,15 @@
 }
 
 .cartContainer {
-  width: 60vw;
-  height: 40vh;
+  width: 80vw;
+  height: 60vh;
   border: 1px solid black;
   position: fixed;
   left: 20px;
   top: 100px;
   z-index: 2;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
