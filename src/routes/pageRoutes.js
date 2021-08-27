@@ -1,14 +1,14 @@
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { adminIds } from "../pages/authpage/adminIds";
+import { adminIds } from "../pages/AuthPage/adminIds";
 
-import HomePage from "../pages/homepage/HomePage";
-import AdminPage from "../pages/adminpage/AdminPage";
-import AuthPage from "../pages/authpage/AuthPage";
-import BookDetailPage from "../pages/bookdetailpage/BookDetailPage";
-import News from "../pages/news/News";
+import HomePage from "../pages/HomePage/HomePage";
+import AdminPage from "../pages/AdminPage/AdminPage";
+import AuthPage from "../pages/AuthPage/AuthPage";
+import BookDetailPage from "../pages/BookDetailPage/BookDetailPage";
+import News from "../pages/News/News";
 import Cart from "../components/Cart/Cart";
-import AboutPage from "../pages/about/about";
+import AboutPage from "../pages/About/about";
 import * as constants from "../constants/constants";
 
 const Routes = (props) => {

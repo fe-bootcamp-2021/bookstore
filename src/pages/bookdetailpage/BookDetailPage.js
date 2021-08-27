@@ -7,7 +7,7 @@ import { getBooks } from "../../redux/ducks/booksSlice";
 import shopCart from "../../assets/images/shopping_cart(1).svg";
 import addOrder from "../../assets/images/plus_circle(1).svg";
 import removeOrder from "../../assets/images/minus_circle.svg";
-import styles from "../bookdetailpage/BookDetailPage.module.css";
+import styles from "../BookDetailPage/BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
