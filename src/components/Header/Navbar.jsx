@@ -12,8 +12,9 @@ import closeIcon from "../../assets/images/close_burger.svg";
 // import cartIcon from "../../assets/images/shopping_cart.svg";
 
 export default function Navbar() {
-  const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
-  const [mobileMenuIsHidden, setMobileMenu] = useState(true);
+  const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =
+    useState(true);
+  const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
 
@@ -57,12 +58,12 @@ export default function Navbar() {
           </div>
         </Link>
         <div
-          onClick={() => setMobileMenu(!mobileMenuIsHidden)}
-          hidden={burgerMenuIconHidden}
+          onClick={() => setMobileMenuVisibility(!mobileMenuVisibilty)}
+          hidden={burgerMenuIconVisibility}
           className={styles.menuIcon}
         >
-          <img width="30px" hidden={!mobileMenuIsHidden} src={menuIcon} />
-          <img width="30px" hidden={mobileMenuIsHidden} src={closeIcon} />
+          <img width="30px" hidden={!mobileMenuVisibilty} src={menuIcon} />
+          <img width="30px" hidden={mobileMenuVisibilty} src={closeIcon} />
         </div>
         {/* <Link> */}
         <Cart />
@@ -101,7 +102,7 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        hidden={mobileMenuIsHidden || windowWidth > 600}
+        hidden={mobileMenuVisibilty || windowWidth > 600}
         className={styles.mobileMenu}
       >
         <Link to="/books">
