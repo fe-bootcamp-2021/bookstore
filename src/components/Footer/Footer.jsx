@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 
-import { ReactComponent as PhoneIcon } from "../../assets/svg/telephone.svg";
-import { ReactComponent as EmailIcon } from "../../assets/svg/e-mail.svg";
+import { ReactComponent as PhoneIcon } from "../../assets/icons/telephone.svg";
+import { ReactComponent as EmailIcon } from "../../assets/icons/e-mail.svg";
 
 export default function Footer() {
   return (
