@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
-import shopCart from "../../assets/images/shopping-cart(1).svg";
-import addOrder from "../../assets/images/plus-circle(1).svg";
-import removeOrder from "../../assets/images/minus-circle.svg";
+import shopCart from "../../assets/images/shopping_cart(1).svg";
+import addOrder from "../../assets/images/plus_circle(1).svg";
+import removeOrder from "../../assets/images/minus_circle.svg";
 import styles from "../bookdetailpage/BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {

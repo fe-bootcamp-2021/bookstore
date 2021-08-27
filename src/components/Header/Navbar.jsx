@@ -4,9 +4,9 @@ import { signOut } from "../../redux/ducks/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "../../assets/images/logo.jpg";
-import menuIcon from "../../assets/images/menu-icon.svg";
+import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
-// import cartIcon from "../../assets/images/shopping-cart.svg";
+// import cartIcon from "../../assets/images/shopping_cart.svg";
 
 import styles from "./Navbar.module.css";
 import Cart from "../Cart/Cart";

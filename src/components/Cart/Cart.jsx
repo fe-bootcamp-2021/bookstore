@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { items } from "./getCartItemsFromLS";
-import cartIcon from "../../assets/images/shopping-cart.svg";
+import cartIcon from "../../assets/images/shopping_cart.svg";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
