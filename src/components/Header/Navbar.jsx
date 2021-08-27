@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { signOut } from "../../redux/ducks/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../redux/ducks/usersSlice";
+
+import styles from "./Navbar.module.css";
+import Cart from "../Cart/Cart";
 
 import logo from "../../assets/images/logo.jpg";
 import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 // import cartIcon from "../../assets/images/shopping_cart.svg";
-
-import styles from "./Navbar.module.css";
-import Cart from "../Cart/Cart";
 
 export default function Navbar() {
   const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);

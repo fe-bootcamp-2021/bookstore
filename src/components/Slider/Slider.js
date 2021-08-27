@@ -1,6 +1,6 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./Slider.css";
-import { useState, useEffect } from "react";
+
 import slide1 from "../../pages/about/images/bookstore.jpg";
 import slide2 from "../../pages/about/images/panorama.jpg";
 import slide3 from "../../pages/about/images/azg.jpg";
