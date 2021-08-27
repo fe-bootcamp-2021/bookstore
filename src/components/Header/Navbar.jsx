@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/ducks/usersSlice";
 
+import * as constants from "../../constants/constants";
 import styles from "./Navbar.module.css";
 import Cart from "../Cart/Cart";
 
@@ -71,16 +72,16 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <Link to="/books">
+            <Link to={constants.booksPageUrl}>
               <h4 className={styles.department}>BOOKS</h4>
             </Link>
-            <Link to="/sale">
+            <Link to={constants.salePageUrl}>
               <h4 className={styles.department}>SALE</h4>
             </Link>
-            <Link to="/news">
+            <Link to={constants.newsPageUrl}>
               <h4 className={styles.department}>NEWS</h4>
             </Link>
-            <Link to="/about">
+            <Link to={constants.aboutPageUrl}>
               <h4 className={styles.department}>ABOUT</h4>
             </Link>
           </div>
@@ -95,7 +96,7 @@ export default function Navbar() {
                   SignOut
                 </Link>
               ) : (
-                <Link to="/auth">LogIn</Link>
+                <Link to={constants.authPageUrl}>LogIn</Link>
               )}
             </div>
           </div>
@@ -105,16 +106,16 @@ export default function Navbar() {
         hidden={mobileMenuVisibilty || windowWidth > 600}
         className={styles.mobileMenu}
       >
-        <Link to="/books">
+        <Link to={constants.booksPageUrl}>
           <h4 className={styles.mobileDepartment}>BOOKS</h4>
         </Link>
-        <Link to="/sale">
+        <Link to={constants.salePageUrl}>
           <h4 className={styles.mobileDepartment}>SALE</h4>
         </Link>
-        <Link to="news">
+        <Link to={constants.newsPageUrl}>
           <h4 className={styles.mobileDepartment}>NEWS</h4>
         </Link>
-        <Link to="/about">
+        <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
         <div className={styles.logBtnsContainer}>
@@ -124,7 +125,7 @@ export default function Navbar() {
                 SignOut
               </p>
             ) : (
-              <Link to="/auth">LogIn</Link>
+              <Link to={constants.authPageUrl}>LogIn</Link>
             )}
           </div>
         </div>

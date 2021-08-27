@@ -6,17 +6,17 @@ import HomePage from "../pages/homepage/HomePage";
 import AdminPage from "../pages/adminpage/AdminPage";
 import AuthPage from "../pages/authpage/AuthPage";
 import BookDetailPage from "../pages/bookdetailpage/BookDetailPage";
-
 import News from "../pages/news/News";
 import Cart from "../components/Cart/Cart";
 import AboutPage from "../pages/about/about";
+import * as constants from "../constants/constants";
 
 const Routes = (props) => {
   const currentUser = useSelector((state) => state.users.currentUser);
 
   return (
     <Switch>
-      <Route exact path="/admin">
+      <Route exact path={constants.adminPageUrl}>
         {currentUser &&
         currentUser.isAdmin &&
         adminIds.includes(currentUser.localId) ? (
@@ -25,19 +25,19 @@ const Routes = (props) => {
           () => <h3>You must be admin to view this page</h3>
         )}
       </Route>
-      <Route exact path="/">
+      <Route exact path={constants.homePageUrl}>
         <HomePage />
       </Route>
-      <Route path="/auth">
+      <Route path={constants.authPageUrl}>
         <AuthPage />
       </Route>
-      <Route path="/news">
+      <Route path={constants.newsPageUrl}>
         <News />
       </Route>
       <Route path="/book/:id">
         <BookDetailPage />
       </Route>
-      <Route path="/about">
+      <Route path={constants.aboutPageUrl}>
         <AboutPage />
       </Route>
     </Switch>
