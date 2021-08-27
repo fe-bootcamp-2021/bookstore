@@ -27,24 +27,6 @@ const HomePage = (props) => {
 
   return (
     <>
-      <div
-        style={{
-          height: "50px",
-          width: "80%",
-          margin: "auto",
-          border: "1px solid black",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        {currentUser ? (
-          <p style={{ margin: "0" }} onClick={() => dispatch(signOut())}>
-            SignOut
-          </p>
-        ) : (
-          <Link to="/auth">LogIn</Link>
-        )}
-      </div>
       <h3>HomePage</h3>
       <button onClick={() => dispatch(getBooks())}>fetch books</button>
       {books.map((book) => {
@@ -57,16 +39,8 @@ const HomePage = (props) => {
             <p>{book.writer}</p>
             <p>{book.price}</p>
 
-            {/*<Link to={`/book/${book.id}`} >
-                                <button
-                                    // onClick={() => dispatch(makingOrder({user: currentUser, book, quantity: 5}))}
-                                    // onClick={() => history.push(`/book/${book.id}`)}
-                                >see more
-                                </button>
-                            </Link>*/}
             <button
-              // onClick={() => dispatch(makingOrder({user: currentUser, book, quantity: 5}))}
-              // onClick={() => history.push(`/book/${book.id}`)}
+
               onClick={() => bookCardClickHandler(book)}
             >
               see more
