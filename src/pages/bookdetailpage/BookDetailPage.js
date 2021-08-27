@@ -5,6 +5,8 @@ import { useLocation, useHistory, useParams } from "react-router-dom";
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
 import shopCart from "../../assets/svg/shopping-cart(1).svg";
+import addOrder from "../../assets/svg/plus-circle(1).svg";
+import removeOrder from "../../assets/svg/minus-circle.svg";
 import styles from "../bookdetailpage/BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
@@ -17,7 +19,9 @@ const BookDetailPage = (props) => {
   const { id } = useParams();
   // const book = useLocation().state.book
   const book = books.find((book) => book.id === id);
-
+  const cartItem = {};
+  cartItem.title = book.title;
+  cartItem.author = book.writer;
   const plusMinusHandler = (type) => {
     let count;
     switch (type) {
@@ -28,6 +32,11 @@ const BookDetailPage = (props) => {
         count = quantity - 1 > 1 ? quantity - 1 : 1;
         return setQuantity(count);
     }
+  };
+  cartItem.Quantity = quantity;
+  cartItem.price = book.price * quantity;
+  const addToCartHandler = () => {
+    localStorage.setItem("cartItem", JSON.stringify(cartItem));
   };
 
   const orderingHandler = () => {
@@ -52,24 +61,33 @@ const BookDetailPage = (props) => {
           <h3>{book.writer}(author)</h3>
           <div className={styles.orderButton}>
             <p>Quantity of order:</p>
-            <button onClick={() => plusMinusHandler("minus")}>-</button>
+            <button
+              className={styles.order}
+              onClick={() => plusMinusHandler("minus")}
+            >
+              <img src={removeOrder} />
+            </button>
             {quantity}
-            <button onClick={() => plusMinusHandler("plus")}>+</button>
-            <button className={styles.cartButton}>
+            <button
+              className={styles.order}
+              onClick={() => plusMinusHandler("plus")}
+            >
+              <img src={addOrder} />
+            </button>
+            <button className={styles.cartButton} onClick={addToCartHandler}>
               <img src={shopCart} />
               Add to Cart
             </button>
-          </div>
-          <button
-            disabled={!currentUser || !book.count}
-            onClick={orderingHandler}
-          >
-            {!book.count
+            <button className={styles.cartButton} onClick={orderingHandler}>
+              {" "}
+              Order
+              {/* {!book.count
               ? "out of order"
               : currentUser
               ? "order"
-              : "please login to order"}
-          </button>
+           : "please login to order"}*/}
+            </button>
+          </div>
           <div>
             <h2>Description</h2>
             <p className={styles.align}>{book.genre}</p>
@@ -90,24 +108,37 @@ const BookDetailPage = (props) => {
         <div className={styles.lowerBody}>
           <div className={styles.orderButton}>
             <p>Quantity of order:</p>
-            <button onClick={() => plusMinusHandler("minus")}>-</button>
+            <button
+              className={styles.order}
+              onClick={() => plusMinusHandler("minus")}
+            >
+              <img src={removeOrder} />
+            </button>
             {quantity}
-            <button onClick={() => plusMinusHandler("plus")}>+</button>
+            <button
+              className={styles.order}
+              onClick={() => plusMinusHandler("plus")}
+            >
+              <img src={addOrder} />
+            </button>
             <button className={styles.cartButton}>
               <img src={shopCart} />
               Add to Cart
             </button>
-          </div>
-          <button
-            disabled={!currentUser || !book.count}
-            onClick={orderingHandler}
-          >
-            {!book.count
+            <button
+              className={styles.cartButton}
+              disabled={!currentUser || !book.count}
+              onClick={orderingHandler}
+            >
+              {" "}
+              Order
+              {/*{!book.count
               ? "out of order"
               : currentUser
               ? "order"
-              : "please login to order"}
-          </button>
+            : "please login to order"}*/}
+            </button>
+          </div>
           <div>
             <h2>Description</h2>
             <p className={styles.align}>{book.genre}</p>
