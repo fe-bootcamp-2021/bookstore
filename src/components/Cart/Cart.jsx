@@ -13,6 +13,7 @@ export default function Cart() {
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCart = useSelector((state) => state.cart);
   console.log(myCart);
+  let totalPrice = 0;
 
   const numberofbooks = myCart.reduce((acc, item) => {
     acc = acc + item.Quantity;
@@ -36,18 +37,21 @@ export default function Cart() {
           <h2>Your Bookstore Cart</h2>
           <div className={styles.itemsContainer}>
             {myCart.map((item, idx) => {
+              totalPrice += item.price;
+
               return (
                 <div className={styles.item}>
-                  <h4>{item.title}</h4>
-                  <h6>{item.author}</h6>
+                  <h4>{item.title}/</h4>
+                  <h6>{item.author}/</h6>
                   <button className={styles.quantityBtn}>-</button>
                   <p>{item.Quantity}</p>
                   <button className={styles.quantityBtn}>+</button>
+                  <h5>/{item.price.toFixed(2)}AMD</h5>
                 </div>
               );
             })}
           </div>
-          <h5>Total Price:</h5>
+          <h5>Total Price: {totalPrice.toFixed(2)}</h5>
         </div>
       )}
     </>

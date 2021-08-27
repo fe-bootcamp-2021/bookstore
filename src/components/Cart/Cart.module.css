@@ -32,17 +32,19 @@
   align-items: center;
   flex-direction: column;
   background-color: #fff;
+  overflow-y: scroll;
 }
 
 .itemsContainer {
   width: 80%;
-  border: 2px solid black;
 }
 
 .item {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border: 2px solid black;
+  margin: 20px 0;
 }
 
 .quantityBtn {
