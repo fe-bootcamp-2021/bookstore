@@ -11,6 +11,9 @@ const AuthPage = (props) => {
   const [signupMode, setSignupMode] = useState(false);
   const history = useHistory();
 
+  const adminPageUrl = "/admin";
+  const homePageUrl = "/";
+
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser);
   console.log("cr", currentUser);
@@ -23,9 +26,9 @@ const AuthPage = (props) => {
   if (currentUser) {
     history.push(
       currentUser.isAdmin && adminIds.includes(currentUser.localId)
-        ? "/admin"
-        : "/"
-    ); // after successfull signin redirect
+        ? adminPageUrl
+        : homePageUrl
+    );
   }
 
   const signUpHandler = (e) => {
