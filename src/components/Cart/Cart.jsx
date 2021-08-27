@@ -7,22 +7,19 @@ import cartIcon from "../../assets/images/shopping-cart.svg";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
-  const currentUser = useSelector((state) => state.users.currentUser);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
-  const myCarts=useSelector((state)=>state.cart)
-  const numberofbooks=myCarts.reduce((acc,item)=>{
-     acc=acc+item.Quantity;
-     return acc;
-  },0)
+
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const myCart = useSelector((state) => state.cart);
+  console.log(myCart);
+
+  const numberofbooks = myCart.reduce((acc, item) => {
+    acc = acc + item.Quantity;
+    return acc;
+  }, 0);
   console.log(numberofbooks);
   const history = useHistory();
-
-  //   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-
-  //   const cartClickhandler = () => {
-  //     setShowCartContainer(!showCartContainer)
-  //   };
 
   return (
     <>
@@ -34,7 +31,25 @@ export default function Cart() {
         <div className={styles.countDiv}>{numberofbooks}</div>
       </div>
 
-      {showCartContainer ? <div className={styles.cartContainer}></div> : null}
+      {showCartContainer && (
+        <div className={styles.cartContainer}>
+          <h2>Your Bookstore Cart</h2>
+          <div className={styles.itemsContainer}>
+            {myCart.map((item, idx) => {
+              return (
+                <div className={styles.item}>
+                  <h4>{item.title}</h4>
+                  <h6>{item.author}</h6>
+                  <button className={styles.quantityBtn}>-</button>
+                  <p>{item.Quantity}</p>
+                  <button className={styles.quantityBtn}>+</button>
+                </div>
+              );
+            })}
+          </div>
+          <h5>Total Price:</h5>
+        </div>
+      )}
     </>
   );
 }

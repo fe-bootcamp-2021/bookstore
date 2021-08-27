@@ -28,4 +28,24 @@
   left: 20px;
   top: 100px;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.itemsContainer {
+  width: 80%;
+  border: 2px solid black;
+}
+
+.item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.quantityBtn {
+  width: 20px;
+  height: 20px;
 }
