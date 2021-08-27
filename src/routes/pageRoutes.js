@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { adminIds } from "../pages/AuthPage/adminIds";
+import { adminIds } from "../pages/AuthPage/AdminIds";
 
 import HomePage from "../pages/HomePage/HomePage";
 import AdminPage from "../pages/AdminPage/AdminPage";
@@ -8,7 +8,7 @@ import AuthPage from "../pages/AuthPage/AuthPage";
 import BookDetailPage from "../pages/BookDetailPage/BookDetailPage";
 import News from "../pages/News/News";
 import Cart from "../components/Cart/Cart";
-import AboutPage from "../pages/About/about";
+import AboutPage from "../pages/About/About";
 import * as constants from "../constants/constants";
 
 const Routes = (props) => {
@@ -34,7 +34,7 @@ const Routes = (props) => {
       <Route path={constants.newsPageUrl}>
         <News />
       </Route>
-      <Route path="/book/:id">
+      <Route path={constants.booksPageUrl}>
         <BookDetailPage />
       </Route>
       <Route path={constants.aboutPageUrl}>
