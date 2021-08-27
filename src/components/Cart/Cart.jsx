@@ -7,7 +7,7 @@ import cartIcon from "../../assets/images/shopping-cart.svg";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
 
