@@ -8,14 +8,16 @@ import shopCart from "../../assets/images/shopping-cart(1).svg";
 import addOrder from "../../assets/images/plus-circle(1).svg";
 import removeOrder from "../../assets/images/minus-circle.svg";
 import styles from "../bookdetailpage/BookDetailPage.module.css";
-import { selectedBooks } from "./selectedBooks";
+import { addItem } from "../../redux/ducks/cartItemSlice";
+
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
+  const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books);
   const history = useHistory();
   const currentUser = useSelector((state) => state.users.currentUser);
-
+  const myCartItem = useSelector((state) => state.cart);
   const { id } = useParams();
   // const book = useLocation().state.book
   const book = books.find((book) => book.id === id);
@@ -35,20 +37,16 @@ const BookDetailPage = (props) => {
   };
   cartItem.Quantity = quantity;
   cartItem.price = book.price * quantity;
-  const addToCartHandler = () => {
-    //localStorage.setItem("cartItems", JSON.stringify(cartItem));
-    let index = selectedBooks.findIndex(
-      (item) => item.title === cartItem.title
-    );
-    console.log(index);
-    //items.some((item)=> item.title===cartItem.title && item.Quantity===cartItem.Quantity)?items.push(cartItem);
-    if (index === -1) selectedBooks.push(cartItem);
-    else {
-      selectedBooks.splice(index, 1, cartItem);
-    }
-    localStorage.setItem("cartItems", JSON.stringify(selectedBooks));
-  };
 
+  const addToCartHandler = () => {
+    if (currentUser) dispatch(addItem(cartItem));
+    else {
+      setErrorMessage("You should sign in before proceeding");
+    }
+  };
+  const closeError = () => {
+    setErrorMessage(null);
+  };
   const orderingHandler = () => {
     if (!book.count || !currentUser) {
       return;
@@ -88,6 +86,7 @@ const BookDetailPage = (props) => {
               <img src={shopCart} />
               Add to Cart
             </button>
+            <p onClick={closeError}>{errorMessage}</p>
             <button className={styles.cartButton} onClick={orderingHandler}>
               {" "}
               Order
@@ -131,10 +130,11 @@ const BookDetailPage = (props) => {
             >
               <img src={addOrder} />
             </button>
-            <button className={styles.cartButton}>
+            <button disabled={!currentUser} className={styles.cartButton}>
               <img src={shopCart} />
               Add to Cart
             </button>
+            <p onClick={closeError}>{errorMessage}</p>
             <button
               className={styles.cartButton}
               disabled={!currentUser || !book.count}
