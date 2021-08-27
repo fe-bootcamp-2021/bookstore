@@ -8,7 +8,7 @@ import shopCart from "../../assets/images/shopping-cart(1).svg";
 import addOrder from "../../assets/images/plus-circle(1).svg";
 import removeOrder from "../../assets/images/minus-circle.svg";
 import styles from "../bookdetailpage/BookDetailPage.module.css";
-
+import { selectedBooks } from "./selectedBooks";
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
@@ -36,7 +36,17 @@ const BookDetailPage = (props) => {
   cartItem.Quantity = quantity;
   cartItem.price = book.price * quantity;
   const addToCartHandler = () => {
-    localStorage.setItem("cartItem", JSON.stringify(cartItem));
+    //localStorage.setItem("cartItems", JSON.stringify(cartItem));
+    let index = selectedBooks.findIndex(
+      (item) => item.title === cartItem.title
+    );
+    console.log(index);
+    //items.some((item)=> item.title===cartItem.title && item.Quantity===cartItem.Quantity)?items.push(cartItem);
+    if (index === -1) selectedBooks.push(cartItem);
+    else {
+      selectedBooks.splice(index, 1, cartItem);
+    }
+    localStorage.setItem("cartItems", JSON.stringify(selectedBooks));
   };
 
   const orderingHandler = () => {
