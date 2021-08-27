@@ -43,9 +43,11 @@ export default function Cart() {
                 <div className={styles.item}>
                   <h4>{item.title}/</h4>
                   <h6>{item.author}/</h6>
-                  <button className={styles.quantityBtn}>-</button>
-                  <p>{item.Quantity}</p>
-                  <button className={styles.quantityBtn}>+</button>
+                  <div className={styles.counter}>
+                    <button className={styles.quantityBtn}>-</button>
+                    <p>{item.Quantity}</p>
+                    <button className={styles.quantityBtn}>+</button>
+                  </div>
                   <h5>/{item.price.toFixed(2)}AMD</h5>
                 </div>
               );
