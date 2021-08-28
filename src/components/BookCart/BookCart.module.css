@@ -11,6 +11,11 @@
     position: relative;
 }
 
+.book:hover{
+    background-image: url(../../assets/images/background.jpg);
+    background-size: cover;
+}
+
 .bookImage{
     width: 100%;
 }
