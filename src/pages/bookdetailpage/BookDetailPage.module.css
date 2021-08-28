@@ -38,6 +38,18 @@
      justify-content:space-evenly;
      
  }
+ .message {
+     color:red;
+     font-weight:bold;
+     display:flex;
+     flex-direction:row;
+     justify-content: space-between;
+     align-items: center;
+     width:55%;
+ }
+ .closeIcon {
+     cursor:pointer;
+ }
  .order {
      background: none;
      border:none;
@@ -91,13 +103,16 @@
         display:none;
     }
     .orderButton {
-        border:1px solid blue;
+       /* border:1px solid blue;*/
         width:100%;
         margin:auto;
     }
     .upperBody {
         display:block;
         /*border:2px solid green;*/
+    }
+    .message {
+        width:75%;
     }
     .lowerBody {
         display: block;
