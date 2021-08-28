@@ -10,11 +10,11 @@ export default function Cart() {
   const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
-  const myCarts=useSelector((state)=>state.cart)
-  const numberofbooks=myCarts.reduce((acc,item)=>{
-     acc=acc+item.Quantity;
-     return acc;
-  },0)
+  const myCarts = useSelector((state) => state.cart);
+  const numberofbooks = myCarts.reduce((acc, item) => {
+    acc = acc + item.Quantity;
+    return acc;
+  }, 0);
   console.log(numberofbooks);
   const history = useHistory();
 

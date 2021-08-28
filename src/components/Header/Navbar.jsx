@@ -72,7 +72,7 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <Link to={constants.booksPageUrl}>
+            <Link to={constants.homePageUrl}>
               <h4 className={styles.department}>BOOKS</h4>
             </Link>
             <Link to={constants.salePageUrl}>

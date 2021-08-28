@@ -12,7 +12,6 @@ import shopCart from "../../assets/images/shopping_cart(1).svg";
 import addOrder from "../../assets/images/plus_circle(1).svg";
 import removeOrder from "../../assets/images/minus_circle.svg";
 import styles from "../BookDetailPage/BookDetailPage.module.css";
-import { selectedBooks } from "./selectedBooks";
 
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(defaultQuantity);

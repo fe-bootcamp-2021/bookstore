@@ -5,8 +5,11 @@ import {
   deletingBook,
   addingBook,
 } from "../../redux/ducks/booksSlice";
+
+import { encodeToBase64 } from "../../components/FileUpload/FileUpload";
 import ChangeBookForm from "./components/changebookform/ChangeBookForm";
 import Modal from "../../ui/modal/Modal";
+import Input from "../../components/Input/Input";
 import styles from "./AdminPage.module.css";
 
 const AdminPage = (props) => {
@@ -56,24 +59,11 @@ const AdminPage = (props) => {
 
     title.current.focus();
   };
-
   const onFileChange = (e) => {
     // console.log('file changed')
     const file = e.target.files[0];
     // console.log('choosen file', file)
-    encodeToBase64(file);
-  };
-
-  const encodeToBase64 = (file) => {
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        let base64 = reader.result;
-        setFileBase64(base64);
-      };
-      reader.onerror = (err) => console.log(err);
-    }
+    encodeToBase64(file, setFileBase64);
   };
 
   return (
