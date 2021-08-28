@@ -1,0 +1,3 @@
+let selectedBooks = [];
+
+export { selectedBooks };

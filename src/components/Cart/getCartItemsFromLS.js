@@ -1,10 +1,10 @@
 let items = [];
 
 try {
-  let temp = localStorage.getItem("cartItems");
-  if (temp) {
-    items = JSON.parse(temp);
-  }
+  items = JSON.parse(localStorage.getItem("cartItems"))
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
+  console.log(items);
 } catch {
   console.log("LocalStorage error");
 }
