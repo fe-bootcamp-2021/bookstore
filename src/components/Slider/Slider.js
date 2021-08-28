@@ -1,9 +1,9 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./Slider.css";
-import { useState, useEffect } from "react";
-import slide1 from "../../pages/about/images/bookstore.jpg";
-import slide2 from "../../pages/about/images/panorama.jpg";
-import slide3 from "../../pages/about/images/azg.jpg";
+
+import slide1 from "../../pages/About/images/bookstore.jpg";
+import slide2 from "../../pages/About/images/panorama.jpg";
+import slide3 from "../../pages/About/images/azg.jpg";
 
 const img = [
   <img alt="" key={slide1} src={slide1} width="100%" object-fit="cover"></img>,
@@ -28,18 +28,16 @@ export default function Slider() {
   const nextImgIndex = activeIndex === img.length - 1 ? 0 : activeIndex + 1;
 
   return (
-    <>
-      <div className="slider">
-        <div className="slider-img slider-img-prev" key={prevImgIndex}>
-          {img[prevImgIndex]}
-        </div>
-        <div className="slider-img" key={activeIndex}>
-          {img[activeIndex]}
-        </div>
-        <div className="slider-img slider-img-next" key={nextImgIndex}>
-          {img[nextImgIndex]}
-        </div>
+    <div className="slider">
+      <div className="slider-img slider-img-prev" key={prevImgIndex}>
+        {img[prevImgIndex]}
       </div>
-    </>
+      <div className="slider-img" key={activeIndex}>
+        {img[activeIndex]}
+      </div>
+      <div className="slider-img slider-img-next" key={nextImgIndex}>
+        {img[nextImgIndex]}
+      </div>
+    </div>
   );
 }

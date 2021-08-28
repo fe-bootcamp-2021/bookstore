@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { items } from "./getCartItemsFromLS";
-import cartIcon from "../../assets/images/shopping-cart.svg";
+import cartIcon from "../../assets/images/shopping_cart.svg";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Cart() {
         <div className={styles.countDiv}>{cartItems.length}</div>
       </div>
 
-      {showCartContainer ? <div className={styles.cartContainer}></div> : null}
+      {showCartContainer && <div className={styles.cartContainer}></div>}
     </>
   );
 }

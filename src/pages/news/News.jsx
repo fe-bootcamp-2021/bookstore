@@ -9,13 +9,13 @@ export default function News(props) {
         date="25.08.2021"
         title="news Title"
         desc="lorem ipsum ......."
-        imgSrc='imgUrl'
+        imgSrc="imgUrl"
       />
       <NewsItem
         date="25.08.2021"
         title="news Title"
         desc="lorem ipsum ......."
-        imgSrc='imgUrl'
+        imgSrc="imgUrl"
       />
     </ul>
   );

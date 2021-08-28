@@ -39,12 +39,7 @@ const HomePage = (props) => {
             <p>{book.writer}</p>
             <p>{book.price}</p>
 
-            <button
-
-              onClick={() => bookCardClickHandler(book)}
-            >
-              see more
-            </button>
+            <button onClick={() => bookCardClickHandler(book)}>see more</button>
           </div>
         );
       })}
