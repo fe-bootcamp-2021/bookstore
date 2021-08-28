@@ -10,7 +10,12 @@ export default function Cart() {
   const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
-
+  const myCarts=useSelector((state)=>state.cart)
+  const numberofbooks=myCarts.reduce((acc,item)=>{
+     acc=acc+item.Quantity;
+     return acc;
+  },0)
+  console.log(numberofbooks);
   const history = useHistory();
 
   //   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -26,7 +31,7 @@ export default function Cart() {
         className={styles.cartIcon}
       >
         <img height="100%" src={cartIcon}></img>
-        <div className={styles.countDiv}>{cartItems.length}</div>
+        <div className={styles.countDiv}>{numberofbooks}</div>
       </div>
 
       {showCartContainer && <div className={styles.cartContainer}></div>}
