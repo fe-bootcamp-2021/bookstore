@@ -46,9 +46,9 @@ const HomePage = (props) => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          // flexDirection: "row",
           flexWrap: "wrap",
           backgroundColor: "#333",
+          paddingBottom: "30px",
         }}
       >
         {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
@@ -62,8 +62,6 @@ const HomePage = (props) => {
               img={book.img}
               onClick={() => bookCardClickHandler(book)}
             />
-
-            // <button onClick={() => bookCardClickHandler(book)}>see more</button>
           );
         })}
       </div>
