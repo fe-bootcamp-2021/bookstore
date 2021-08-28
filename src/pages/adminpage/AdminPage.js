@@ -6,9 +6,10 @@ import {
   addingBook,
 } from "../../redux/ducks/booksSlice";
 
-import { encodeToBase64 } from "../../components/FileUpload/Fileupload";
+import { encodeToBase64 } from "../../components/FileUpload/FileUpload";
 import ChangeBookForm from "./components/changebookform/ChangeBookForm";
 import Modal from "../../ui/modal/Modal";
+import Input from "../../components/Input/Input";
 import styles from "./AdminPage.module.css";
 
 const AdminPage = (props) => {

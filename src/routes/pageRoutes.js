@@ -10,6 +10,7 @@ import News from "../pages/News/News";
 import Cart from "../components/Cart/Cart";
 import AboutPage from "../pages/About/About";
 import * as constants from "../constants/constants";
+import BookCart from "../components/BookCart/BookCart";
 
 const Routes = (props) => {
   const currentUser = useSelector((state) => state.users.currentUser);

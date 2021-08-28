@@ -5,6 +5,7 @@ import { signOut } from "../../redux/ducks/usersSlice";
 
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { Link, useHistory } from "react-router-dom";
+import BookCart from "../../components/BookCart/BookCart";
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
@@ -27,22 +28,45 @@ const HomePage = (props) => {
 
   return (
     <>
-      <h3>HomePage</h3>
-      <button onClick={() => dispatch(getBooks())}>fetch books</button>
-      {books.map((book) => {
-        return (
-          <div
-            key={book.id}
-            style={{ width: "300px", border: "1px solid black" }}
-          >
-            <p>{book.title}</p>
-            <p>{book.writer}</p>
-            <p>{book.price}</p>
+      <div
+        style={{
+          backgroundColor: "#2b2b2a",
+          textAlign: "center",
+          color: "white",
+          height: "60px",
+          padding: "5px 50px",
+          margin: "auto",
+          fontSize: "16px",
+        }}
+      >
+        <h3>Հատուկ Առաջարկ</h3>
+      </div>
 
-            <button onClick={() => bookCardClickHandler(book)}>see more</button>
-          </div>
-        );
-      })}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          // flexDirection: "row",
+          flexWrap: "wrap",
+          backgroundColor: "#333",
+        }}
+      >
+        {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
+        {books.map((book) => {
+          return (
+            <BookCart
+              key={book.id}
+              title={book.title}
+              writer={book.writer}
+              price={book.price}
+              img={book.img}
+              onClick={() => bookCardClickHandler(book)}
+            />
+
+            // <button onClick={() => bookCardClickHandler(book)}>see more</button>
+          );
+        })}
+      </div>
     </>
   );
 };
