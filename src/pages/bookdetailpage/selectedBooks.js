@@ -1,3 +1,0 @@
-let selectedBooks = [];
-
-export { selectedBooks };
