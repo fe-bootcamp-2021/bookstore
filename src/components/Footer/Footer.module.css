@@ -7,33 +7,42 @@ footer {
   padding: 20px;
   font-size: 20px;
 }
+
 footer table {
   border-collapse: collapse;
 }
+
 footer table,
 footer th,
 footer td {
   border: none !important;
 }
+
 footer hr {
   border-color: #e6e154;
 }
+
 footer td {
   padding-right: 20px;
 }
+
 .icons {
   margin-right: 3px;
 }
+
 footer a {
   text-decoration: none;
   color: inherit;
 }
+
 footer a:hover {
   color: rgb(165, 139, 184);
 }
+
 footer a span {
   margin-left: 7px;
 }
+
 .map {
   width: auto;
   height: 200px;
