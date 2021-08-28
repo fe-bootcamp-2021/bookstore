@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { items } from "./getCartItemsFromLS";
 import cartIcon from "../../assets/images/shopping-cart.svg";
 import styles from "./Cart.module.css";
+import { deleteItem } from "../../redux/ducks/cartItemSlice";
 
 export default function Cart() {
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
+
+  const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCart = useSelector((state) => state.cart);
@@ -19,8 +24,10 @@ export default function Cart() {
     acc = acc + item.Quantity;
     return acc;
   }, 0);
-  console.log(numberofbooks);
-  const history = useHistory();
+
+  const handleItemDelete = (title) => {
+    dispatch(deleteItem(title));
+  };
 
   return (
     <>
@@ -40,7 +47,7 @@ export default function Cart() {
               totalPrice += item.price;
 
               return (
-                <div className={styles.item}>
+                <div key={idx} className={styles.item}>
                   <h4>{item.title}/</h4>
                   <h6>{item.author}/</h6>
                   <div className={styles.counter}>
@@ -49,6 +56,9 @@ export default function Cart() {
                     <button className={styles.quantityBtn}>+</button>
                   </div>
                   <h5>/{item.price.toFixed(2)}AMD</h5>
+                  <button onClick={() => handleItemDelete(item.title)}>
+                    Delete
+                  </button>
                 </div>
               );
             })}

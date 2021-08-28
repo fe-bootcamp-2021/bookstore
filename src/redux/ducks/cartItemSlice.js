@@ -13,8 +13,14 @@ const cartItemSlice = createSlice({
       if (cartIndex === -1) state.push(action.payload);
       else state.splice(cartIndex, 1, action.payload);
     },
+
+    deleteItem: (state, action) => {
+      const index = state.findIndex((cart) => cart.title === action.payload);
+
+      state.splice(index, 1);
+    },
   },
 });
 
-export const { addItem } = cartItemSlice.actions;
+export const { addItem, deleteItem } = cartItemSlice.actions;
 export default cartItemSlice.reducer;

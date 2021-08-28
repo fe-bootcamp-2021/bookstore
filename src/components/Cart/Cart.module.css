@@ -48,9 +48,9 @@
   margin: 20px 0;
 }
 
-/* .item > * {
+.item > * {
   margin: 0 15px;
-} */
+}
 
 .quantityBtn {
   width: 20px;
