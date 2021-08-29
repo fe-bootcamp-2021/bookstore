@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router-dom";
+
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
 import shopCart from "../../assets/images/shopping-cart(1).svg";
@@ -13,17 +13,21 @@ import { addItem } from "../../redux/ducks/cartItemSlice";
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [errorMessage, setErrorMessage] = useState(null);
+
   const dispatch = useDispatch();
+
   const books = useSelector((state) => state.books);
-  const history = useHistory();
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
+
+  const history = useHistory();
   const { id } = useParams();
   // const book = useLocation().state.book
   const book = books.find((book) => book.id === id);
   const cartItem = {};
   cartItem.title = book.title;
   cartItem.author = book.writer;
+
   const plusMinusHandler = (type) => {
     let count;
     switch (type) {
@@ -36,7 +40,8 @@ const BookDetailPage = (props) => {
     }
   };
   cartItem.Quantity = quantity;
-  cartItem.price = book.price * quantity;
+  cartItem.price = book.price;
+  cartItem.warehouseCount = book.count;
 
   const addToCartHandler = () => {
     if (currentUser) dispatch(addItem(cartItem));

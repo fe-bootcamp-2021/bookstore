@@ -5,7 +5,11 @@ import { useHistory } from "react-router-dom";
 import { items } from "./getCartItemsFromLS";
 import cartIcon from "../../assets/images/shopping-cart.svg";
 import styles from "./Cart.module.css";
-import { deleteItem } from "../../redux/ducks/cartItemSlice";
+import {
+  decrement,
+  deleteItem,
+  increment,
+} from "../../redux/ducks/cartItemSlice";
 
 export default function Cart() {
   const [cartItems, setCartItem] = useState(items);
@@ -29,6 +33,14 @@ export default function Cart() {
     dispatch(deleteItem(title));
   };
 
+  const handleIncrement = (quantity) => {
+    dispatch(increment(quantity));
+  };
+
+  const handleDecrement = (quantity) => {
+    dispatch(decrement(quantity));
+  };
+
   return (
     <>
       <div
@@ -44,18 +56,28 @@ export default function Cart() {
           <h2>Your Bookstore Cart</h2>
           <div className={styles.itemsContainer}>
             {myCart.map((item, idx) => {
-              totalPrice += item.price;
+              totalPrice += Number(item.price * item.Quantity);
 
               return (
                 <div key={idx} className={styles.item}>
                   <h4>{item.title}/</h4>
                   <h6>{item.author}/</h6>
                   <div className={styles.counter}>
-                    <button className={styles.quantityBtn}>-</button>
+                    <button
+                      onClick={() => handleDecrement(item.title)}
+                      className={styles.quantityBtn}
+                    >
+                      -
+                    </button>
                     <p>{item.Quantity}</p>
-                    <button className={styles.quantityBtn}>+</button>
+                    <button
+                      onClick={() => handleIncrement(item.title)}
+                      className={styles.quantityBtn}
+                    >
+                      +
+                    </button>
                   </div>
-                  <h5>/{item.price.toFixed(2)}AMD</h5>
+                  <h5>/{Number(item.price * item.Quantity).toFixed(2)}AMD</h5>
                   <button onClick={() => handleItemDelete(item.title)}>
                     Delete
                   </button>
@@ -63,7 +85,7 @@ export default function Cart() {
               );
             })}
           </div>
-          <h5>Total Price: {totalPrice.toFixed(2)}</h5>
+          <h5>Total Price: {Number(totalPrice).toFixed(2)}</h5>
         </div>
       )}
     </>
