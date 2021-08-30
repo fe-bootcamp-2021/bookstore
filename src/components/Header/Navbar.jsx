@@ -10,13 +10,14 @@ import Cart from "../Cart/Cart";
 import logo from "../../assets/images/logo.jpg";
 import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
+import useWindowWidth from "../../hooks/useWindowWidth";
 // import cartIcon from "../../assets/images/shopping_cart.svg";
 
 export default function Navbar() {
   const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =
     useState(true);
   const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
 
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -24,31 +25,23 @@ export default function Navbar() {
 
   const history = useHistory();
 
+  const width = useWindowWidth();
+
   useEffect(() => {
-    // const tempCartItems = JSON.parse(localStorage.getItem("cartItem"));
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth);
-    });
+  // useEffect(() => {
+  //   window.addEventListener("resize", () => {
+  //     setWindowWidth(window.innerWidth);
+  //   });
 
-    return () => {
-      window.removeEventListener("resize", () => {
-        setWindowWidth(window.innerWidth);
-      });
-    };
-  });
-
-  // const cartClickhandler = () => {
-  //   if (currentUser) {
-  //     history.push("/cart");
-  //   } else {
-  //     history.push("/auth");
-  //     setCartItem([...cartItems, { 1: 1 }]);
-  //   }
-  // };
+  //   return () => {
+  //     window.removeEventListener("resize", () => {
+  //       setWindowWidth(window.innerWidth);
+  //     });
+  //   };
+  // });
 
   return (
     <>
@@ -103,7 +96,7 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        hidden={mobileMenuVisibilty || windowWidth > 600}
+        hidden={mobileMenuVisibilty || width > 600}
         className={styles.mobileMenu}
       >
         <Link to={constants.booksPageUrl}>

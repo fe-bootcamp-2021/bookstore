@@ -29,8 +29,6 @@ const BookDetailPage = (props) => {
 
   const book = books.find((book) => book.id === id);
 
-  console.log(myCartItem);
-
   const plusMinusHandler = (type) => {
     let count;
     switch (type) {
