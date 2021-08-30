@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { signOut } from "../../redux/ducks/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../redux/ducks/usersSlice";
 
-import logo from "../../assets/images/logo.jpg";
-import menuIcon from "../../assets/images/menu-icon.svg";
-import closeIcon from "../../assets/images/close_burger.svg";
-// import cartIcon from "../../assets/images/shopping-cart.svg";
-
+import * as constants from "../../constants/constants";
 import styles from "./Navbar.module.css";
 import Cart from "../Cart/Cart";
 
+import logo from "../../assets/images/logo.jpg";
+import menuIcon from "../../assets/images/menu_icon.svg";
+import closeIcon from "../../assets/images/close_burger.svg";
+// import cartIcon from "../../assets/images/shopping_cart.svg";
+
 export default function Navbar() {
-  const [burgerMenuIconHidden, setBurgerMenuIcon] = useState(true);
-  const [mobileMenuIsHidden, setMobileMenu] = useState(true);
+  const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =
+    useState(true);
+  const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
 
@@ -57,12 +59,12 @@ export default function Navbar() {
           </div>
         </Link>
         <div
-          onClick={() => setMobileMenu(!mobileMenuIsHidden)}
-          hidden={burgerMenuIconHidden}
+          onClick={() => setMobileMenuVisibility(!mobileMenuVisibilty)}
+          hidden={burgerMenuIconVisibility}
           className={styles.menuIcon}
         >
-          <img width="30px" hidden={!mobileMenuIsHidden} src={menuIcon} />
-          <img width="30px" hidden={mobileMenuIsHidden} src={closeIcon} />
+          <img width="30px" hidden={!mobileMenuVisibilty} src={menuIcon} />
+          <img width="30px" hidden={mobileMenuVisibilty} src={closeIcon} />
         </div>
         {/* <Link> */}
         <Cart />
@@ -70,16 +72,16 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <Link to="/books">
+            <Link to={constants.homePageUrl}>
               <h4 className={styles.department}>BOOKS</h4>
             </Link>
-            <Link to="/sale">
+            <Link to={constants.salePageUrl}>
               <h4 className={styles.department}>SALE</h4>
             </Link>
-            <Link to="/news">
+            <Link to={constants.newsPageUrl}>
               <h4 className={styles.department}>NEWS</h4>
             </Link>
-            <Link to="/about">
+            <Link to={constants.aboutPageUrl}>
               <h4 className={styles.department}>ABOUT</h4>
             </Link>
           </div>
@@ -94,26 +96,26 @@ export default function Navbar() {
                   SignOut
                 </Link>
               ) : (
-                <Link to="/auth">LogIn</Link>
+                <Link to={constants.authPageUrl}>LogIn</Link>
               )}
             </div>
           </div>
         </div>
       </div>
       <div
-        hidden={mobileMenuIsHidden || windowWidth > 600}
+        hidden={mobileMenuVisibilty || windowWidth > 600}
         className={styles.mobileMenu}
       >
-        <Link to="/books">
+        <Link to={constants.booksPageUrl}>
           <h4 className={styles.mobileDepartment}>BOOKS</h4>
         </Link>
-        <Link to="/sale">
+        <Link to={constants.salePageUrl}>
           <h4 className={styles.mobileDepartment}>SALE</h4>
         </Link>
-        <Link to="news">
+        <Link to={constants.newsPageUrl}>
           <h4 className={styles.mobileDepartment}>NEWS</h4>
         </Link>
-        <Link to="/about">
+        <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
         <div className={styles.logBtnsContainer}>
@@ -123,7 +125,7 @@ export default function Navbar() {
                 SignOut
               </p>
             ) : (
-              <Link to="/auth">LogIn</Link>
+              <Link to={constants.authPageUrl}>LogIn</Link>
             )}
           </div>
         </div>

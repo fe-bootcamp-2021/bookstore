@@ -1,58 +1,65 @@
-import { firebase } from '../initFirebase';
+import { firebase } from "../initFirebase";
 import { useEffect, useState, useContext, createContext } from "react";
 
-const AuthContext = createContext()
+const AuthContext = createContext();
+const localhostUrl = "http://localhost:3000";
 
 const useAuth = () => {
-    return useContext(AuthContext)
-}
+  return useContext(AuthContext);
+};
 
+const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
 
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setIsLoggingIn(false);
+    });
 
-const AuthProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(null)
-    const [isLoggingIn, setIsLoggingIn] = useState(true)
+    return () => unsubscribe();
+  }, []);
 
-    useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-            setCurrentUser(user)
-            setIsLoggingIn(false)
-        })
+  const sendSignInLinkToEmail = (email) => {
+    return firebase
+      .auth()
+      .sendSignInLinkToEmail(email, {
+        url: localhostUrl,
+        handleCodeInApp: true,
+      })
+      .then(() => true);
+  };
 
-        return () => unsubscribe()
-    }, [])
+  const signInWithEmailLink = (email, code) => {
+    return firebase
+      .auth()
+      .signInWithEmailLink(email, code)
+      .then((result) => {
+        setCurrentUser(result.user);
+        return true;
+      });
+  };
 
-    const sendSignInLinkToEmail = email => {
-        return firebase.auth().sendSignInLinkToEmail(email, {
-            url: 'http://localhost:3000',
-            handleCodeInApp: true
-        }).then(() => true)
-    }
+  const logOut = () =>
+    firebase
+      .auth()
+      .signOut()
+      .then(() => setCurrentUser(null));
 
+  const values = {
+    currentUser,
+    isLoggingIn,
+    sendSignInLinkToEmail,
+    signInWithEmailLink,
+    logOut,
+  };
 
-    const signInWithEmailLink = (email, code) => {
-        return firebase.auth().signInWithEmailLink(email, code).then(result => {
-            setCurrentUser(result.user)
-            return true
-        })
-    }
+  return (
+    <AuthContext.Provider value={values}>
+      {!isLoggingIn && children}
+    </AuthContext.Provider>
+  );
+};
 
-    const logOut = () => firebase.auth().signOut().then(() => setCurrentUser(null))
-
-    const values = {
-        currentUser,
-        isLoggingIn,
-        sendSignInLinkToEmail,
-        signInWithEmailLink,
-        logOut
-    }
-
-    return (
-        <AuthContext.Provider value={values}>
-            {!isLoggingIn && children}
-        </AuthContext.Provider>
-    )
-
-}
-
-export { AuthProvider }
+export { AuthProvider };

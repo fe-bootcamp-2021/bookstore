@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./about.module.css";
 
 import panorama from "../about/images/panorama.jpg";
-import azg from "../about/images/azg.jpg";
+import azg from "./images/azg.jpg";
 import Slider from "../../components/Slider/Slider";
 
 const AboutPage = () => {
@@ -15,7 +15,7 @@ const AboutPage = () => {
         </div>
         <div className={styles.text}>
           <p className={styles.paragraph}>
-            Yes, this is the interior of the Book Store in #Armenia. Mind
+            Yes, this is the interior of the Book Store in Armenia. Mind
             blowing, isn't it? exploding_head The building was built in 1940 and
             the book store was initially a tobacco shop, that's why it has an
             Eastern style interior. Later it became a musical store and from the

@@ -1,1 +1,1 @@
-export const adminIds  = ['9XWQ2wfoVaTkGjvwrm03nstMYro2', 'AVVyicGN54YIh8CAvHQaLB21GOd2']
+export const adminIds = ["2U9LO3o4OvYH4U6VAnYoF9Cg4ZX2"];

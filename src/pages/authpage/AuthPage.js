@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { signingUp, signingIn, signOut } from "../../redux/ducks/usersSlice";
 
 import { adminIds } from "./adminIds";
-
+import * as constants from "../../constants/constants";
 import styles from "./AuthPage.module.css";
 
 const AuthPage = (props) => {
@@ -23,9 +23,9 @@ const AuthPage = (props) => {
   if (currentUser) {
     history.push(
       currentUser.isAdmin && adminIds.includes(currentUser.localId)
-        ? "/admin"
-        : "/"
-    ); // after successfull signin redirect
+        ? constants.adminPageUrl
+        : constants.homePageUrl
+    );
   }
 
   const signUpHandler = (e) => {

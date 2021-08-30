@@ -3,31 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { items } from "./getCartItemsFromLS";
-import cartIcon from "../../assets/images/shopping-cart.svg";
+import cartIcon from "../../assets/images/shopping_cart.svg";
 import styles from "./Cart.module.css";
-import {
-  decrement,
-  deleteItem,
-  increment,
-} from "../../redux/ducks/cartItemSlice";
+import { decrement, deleteItem, increment } from "../../redux/ducks/cartSlice";
 
 export default function Cart() {
+  const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
-
+  const myCarts = useSelector((state) => state.cart);
+  const numberofbooks = myCarts.reduce((acc, item) => {
+    acc = acc + item.Quantity;
+    return acc;
+  }, 0);
+  console.log(numberofbooks);
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const currentUser = useSelector((state) => state.users.currentUser);
   const myCart = useSelector((state) => state.cart);
   console.log(myCart);
   let totalPrice = 0;
-
-  const numberofbooks = myCart.reduce((acc, item) => {
-    acc = acc + item.Quantity;
-    return acc;
-  }, 0);
 
   const handleItemDelete = (title) => {
     dispatch(deleteItem(title));
@@ -50,7 +46,6 @@ export default function Cart() {
         <img height="100%" src={cartIcon}></img>
         <div className={styles.countDiv}>{numberofbooks}</div>
       </div>
-
       {showCartContainer && (
         <div className={styles.cartContainer}>
           <h2>Your Bookstore Cart</h2>
@@ -64,21 +59,21 @@ export default function Cart() {
                   <h6>{item.author}/</h6>
                   <div className={styles.counter}>
                     <button
-                      onClick={() => handleDecrement(item.title)}
+                      onClick={() => handleDecrement(item.id)}
                       className={styles.quantityBtn}
                     >
                       -
                     </button>
                     <p>{item.Quantity}</p>
                     <button
-                      onClick={() => handleIncrement(item.title)}
+                      onClick={() => handleIncrement(item.id)}
                       className={styles.quantityBtn}
                     >
                       +
                     </button>
                   </div>
                   <h5>/{Number(item.price * item.Quantity).toFixed(2)}AMD</h5>
-                  <button onClick={() => handleItemDelete(item.title)}>
+                  <button onClick={() => handleItemDelete(item.id)}>
                     Delete
                   </button>
                 </div>

@@ -6,7 +6,7 @@ import rootSaga from "./sagas/rootSaga";
 import books from "./ducks/booksSlice";
 import users from "./ducks/usersSlice";
 import orders from "./ducks/ordersSlice";
-import cart from "./ducks/cartItemSlice";
+import cart from "./ducks/cartSlice";
 const sagaMiddlware = createSagaMiddleware();
 
 const reducer = combineReducers({

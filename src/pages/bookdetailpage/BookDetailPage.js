@@ -4,29 +4,30 @@ import { useLocation, useHistory, useParams } from "react-router-dom";
 
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
-import shopCart from "../../assets/images/shopping-cart(1).svg";
-import addOrder from "../../assets/images/plus-circle(1).svg";
-import removeOrder from "../../assets/images/minus-circle.svg";
-import styles from "../bookdetailpage/BookDetailPage.module.css";
-import { addItem } from "../../redux/ducks/cartItemSlice";
+import { addItem } from "../../redux/ducks/cartSlice";
+import { createCart } from "./helpers/cartCreation";
+import { defaultQuantity, warningMessage } from "./constants";
+import shopCart from "../../assets/images/shopping_cart(1).svg";
+import addOrder from "../../assets/images/plus_circle(1).svg";
+import removeOrder from "../../assets/images/minus_circle.svg";
+import styles from "./BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(defaultQuantity);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const dispatch = useDispatch();
+  const [closeIcon, setCloseIcon] = useState(null);
 
   const books = useSelector((state) => state.books);
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
 
-  const history = useHistory();
   const { id } = useParams();
-  // const book = useLocation().state.book
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const book = books.find((book) => book.id === id);
-  const cartItem = {};
-  cartItem.title = book.title;
-  cartItem.author = book.writer;
 
   const plusMinusHandler = (type) => {
     let count;
@@ -39,26 +40,44 @@ const BookDetailPage = (props) => {
         return setQuantity(count);
     }
   };
-  cartItem.Quantity = quantity;
-  cartItem.price = book.price;
-  cartItem.warehouseCount = book.count;
 
+  console.log(book);
   const addToCartHandler = () => {
-    if (currentUser) dispatch(addItem(cartItem));
+    if (currentUser)
+      dispatch(
+        addItem(
+          createCart(
+            book.title,
+            book.writer,
+            quantity,
+            book.price,
+            id,
+            book.count
+          )
+        )
+      );
     else {
-      setErrorMessage("You should sign in before proceeding");
+      setErrorMessage(warningMessage);
+      setCloseIcon("X");
     }
+    /*dispatch(
+      addItem(
+        createCart(book.title, book.writer, quantity, book.price * quantity, id)
+      )
+    );*/
   };
   const closeError = () => {
     setErrorMessage(null);
+    setCloseIcon(null);
   };
   const orderingHandler = () => {
     if (!book.count || !currentUser) {
-      return;
-    }
-    dispatch(makingOrder({ user: currentUser, book, quantity }));
+      setErrorMessage(warningMessage);
+      setCloseIcon("X");
+      //return;
+    } else dispatch(makingOrder({ user: currentUser, book, quantity }));
   };
-
+  //console.log(myCartItem);
   return book ? (
     <>
       <div className={styles.container}>
@@ -91,7 +110,7 @@ const BookDetailPage = (props) => {
               <img src={shopCart} />
               Add to Cart
             </button>
-            <p onClick={closeError}>{errorMessage}</p>
+            {/*<p onClick={closeError}>{errorMessage}</p>*/}
             <button className={styles.cartButton} onClick={orderingHandler}>
               {" "}
               Order
@@ -101,6 +120,12 @@ const BookDetailPage = (props) => {
               ? "order"
            : "please login to order"}*/}
             </button>
+          </div>
+          <div className={styles.message}>
+            <p>{errorMessage}</p>
+            <p className={styles.closeIcon} onClick={closeError}>
+              {closeIcon}
+            </p>
           </div>
           <div>
             <h2>Description</h2>
@@ -135,14 +160,14 @@ const BookDetailPage = (props) => {
             >
               <img src={addOrder} />
             </button>
-            <button disabled={!currentUser} className={styles.cartButton}>
+            <button className={styles.cartButton} onClick={addToCartHandler}>
               <img src={shopCart} />
               Add to Cart
             </button>
-            <p onClick={closeError}>{errorMessage}</p>
+            {/*<p onClick={closeError}>{errorMessage}</p>*/}
             <button
               className={styles.cartButton}
-              disabled={!currentUser || !book.count}
+              /*disabled={!currentUser || !book.count}*/
               onClick={orderingHandler}
             >
               {" "}
@@ -153,6 +178,12 @@ const BookDetailPage = (props) => {
               ? "order"
             : "please login to order"}*/}
             </button>
+          </div>
+          <div className={styles.message}>
+            <p>{errorMessage}</p>
+            <p className={styles.closeIcon} onClick={closeError}>
+              {closeIcon}
+            </p>
           </div>
           <div>
             <h2>Description</h2>
@@ -181,20 +212,3 @@ const BookDetailPage = (props) => {
 };
 
 export default BookDetailPage;
-
-/* <div className={styles.BookDetailPage} >
-            <h3>title: {book.title}</h3>
-            <h3>writer: {book.writer}</h3>
-            <h3>yearPublished: {book.yearPublished}</h3>
-            <h3>quantity: {book.count}</h3>
-            <div style={{height: '30px', display: 'flex', justifyContent: 'space-evenly', marginBottom: '15px'}} >
-                <button disabled={!book.count || !currentUser} onClick={() => plusMinusHandler('minus')} >-</button>
-                    {quantity}
-                <button disabled={!book.count || !currentUser} onClick={() => plusMinusHandler('plus')} >+</button>
-            </div>
-            <button
-                disabled={!currentUser || !book.count} 
-                onClick={orderingHandler}
-            >{!book.count ? 'out of order' : currentUser ?  'order' : 'please login to order'}</button>
-        </div> : <h3>Loading...</h3>
-    )*/
