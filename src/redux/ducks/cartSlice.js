@@ -13,8 +13,32 @@ const cartSlice = createSlice({
       if (cartIndex === -1) state.push(action.payload);
       else state.splice(cartIndex, 1, action.payload);
     },
+
+    deleteItem: (state, action) => {
+      const index = state.findIndex((cart) => cart.id === action.payload);
+
+      state.splice(index, 1);
+    },
+
+    increment: (state, action) => {
+      const index = state.findIndex((item) => item.id === action.payload);
+
+      if (Number(state[index].count) > Number(state[index].Quantity)) {
+        state[index].Quantity += 1;
+      }
+      // console.log(state[index].warehouseCount);
+    },
+
+    decrement: (state, action) => {
+      const index = state.findIndex((item) => item.id === action.payload);
+      state[index].Quantity -= 1;
+
+      if (Number(state[index].Quantity) === 0) {
+        state.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { addItem } = cartSlice.actions;
+export const { addItem, deleteItem, increment, decrement } = cartSlice.actions;
 export default cartSlice.reducer;

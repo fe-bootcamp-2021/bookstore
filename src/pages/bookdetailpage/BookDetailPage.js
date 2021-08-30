@@ -1,28 +1,32 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router-dom";
+
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
-
 import { addItem } from "../../redux/ducks/cartSlice";
 import { createCart } from "./helpers/cartCreation";
 import { defaultQuantity, warningMessage } from "./constants";
 import shopCart from "../../assets/images/shopping_cart(1).svg";
 import addOrder from "../../assets/images/plus_circle(1).svg";
 import removeOrder from "../../assets/images/minus_circle.svg";
-import styles from "../BookDetailPage/BookDetailPage.module.css";
+import styles from "./BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
   const [quantity, setQuantity] = useState(defaultQuantity);
   const [errorMessage, setErrorMessage] = useState(null);
   const [closeIcon, setCloseIcon] = useState(null);
+
   const books = useSelector((state) => state.books);
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
+
   const { id } = useParams();
+
   const dispatch = useDispatch();
+
   const history = useHistory();
+
   const book = books.find((book) => book.id === id);
 
   const plusMinusHandler = (type) => {
@@ -37,6 +41,7 @@ const BookDetailPage = (props) => {
     }
   };
 
+  console.log(book);
   const addToCartHandler = () => {
     if (currentUser)
       dispatch(
@@ -45,8 +50,9 @@ const BookDetailPage = (props) => {
             book.title,
             book.writer,
             quantity,
-            book.price * quantity,
-            id
+            book.price,
+            id,
+            book.count
           )
         )
       );
@@ -206,20 +212,3 @@ const BookDetailPage = (props) => {
 };
 
 export default BookDetailPage;
-
-/* <div className={styles.BookDetailPage} >
-            <h3>title: {book.title}</h3>
-            <h3>writer: {book.writer}</h3>
-            <h3>yearPublished: {book.yearPublished}</h3>
-            <h3>quantity: {book.count}</h3>
-            <div style={{height: '30px', display: 'flex', justifyContent: 'space-evenly', marginBottom: '15px'}} >
-                <button disabled={!book.count || !currentUser} onClick={() => plusMinusHandler('minus')} >-</button>
-                    {quantity}
-                <button disabled={!book.count || !currentUser} onClick={() => plusMinusHandler('plus')} >+</button>
-            </div>
-            <button
-                disabled={!currentUser || !book.count} 
-                onClick={orderingHandler}
-            >{!book.count ? 'out of order' : currentUser ?  'order' : 'please login to order'}</button>
-        </div> : <h3>Loading...</h3>
-    )*/

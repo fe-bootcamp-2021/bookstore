@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signingUp, signingIn, signOut } from "../../redux/ducks/usersSlice";
 
-import { adminIds } from "./AdminIds";
+import { adminIds } from "./adminIds";
 import * as constants from "../../constants/constants";
 import styles from "./AuthPage.module.css";
 

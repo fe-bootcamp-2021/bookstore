@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./about.module.css";
 
-import panorama from "../About/images/panorama.jpg";
-import azg from "../About/images/azg.jpg";
+import panorama from "../about/images/panorama.jpg";
+import azg from "./images/azg.jpg";
 import Slider from "../../components/Slider/Slider";
 
 const AboutPage = () => {

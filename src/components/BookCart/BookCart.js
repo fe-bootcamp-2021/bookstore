@@ -1,5 +1,5 @@
 import styles from "./BookCart.module.css";
-import img from "../../pages/About/images/azg.jpg";
+import img from "../../pages/about/images/azg.jpg";
 import background from "../../assets/images/background.jpg";
 
 export default function BookCart(props) {
