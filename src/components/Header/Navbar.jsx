@@ -31,18 +31,6 @@ export default function Navbar() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     setWindowWidth(window.innerWidth);
-  //   });
-
-  //   return () => {
-  //     window.removeEventListener("resize", () => {
-  //       setWindowWidth(window.innerWidth);
-  //     });
-  //   };
-  // });
-
   return (
     <>
       <div className={styles.mainNavbar}>
