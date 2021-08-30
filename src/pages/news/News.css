@@ -2,6 +2,7 @@
 .news {
   list-style-type: none;
 }
+
 .newsItem {
   flex-direction: row;
 }
@@ -10,16 +11,20 @@
   display: flex;
   flex-direction: row;
 }
+
 .newsDesc {
   text-align: justify;
 }
+
 .newsItemPart{
     padding: 20px;
     width: 50%;
 }
+
 .newsTitle {
   text-align: center;
 }
+
 .news li:nth-child(even) .newsItemContent{
   flex-direction: row-reverse
 }

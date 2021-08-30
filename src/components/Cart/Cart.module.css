@@ -28,8 +28,38 @@
   left: 20px;
   top: 100px;
   z-index: 2;
-  background-color: #fff;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.itemsContainer {
+  width: 80%;
+}
+
+.item {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid black;
+  margin: 20px 0;
+}
+
+.item > * {
+  margin: 0 15px;
+}
+
+.quantityBtn {
+  width: 20px;
+  height: 20px;
+}
+
+.counter {
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }

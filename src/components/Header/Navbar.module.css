@@ -1,6 +1,7 @@
 .mainNavbar {
   min-height: 60px;
-  background-color: #b6c7ca;
+  background-image: url(../../assets/images/background.jpg);
+  background-size: cover;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -41,7 +42,7 @@
 
 .navbarLoggers a {
   text-decoration: none;
-  color: white;
+  color: #969547;
 }
 
 .loggerDepartments {
@@ -63,7 +64,7 @@
 
 .departments > a {
   text-decoration: none;
-  color: white;
+  color: #969547;
 }
 
 .menuIcon {
@@ -77,28 +78,6 @@
   cursor: pointer;
   transform: scale(1.2);
 }
-
-/* .cartContainer {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin-left: 60px;
-}
-
-.cartContainer:hover {
-  cursor: pointer;
-}
-
-.countDiv {
-  position: absolute;
-  color: white;
-  background-color: tomato;
-  border-radius: 50%;
-  padding-left: 6px;
-  padding-right: 6px;
-  top: 0;
-  left: 0;
-} */
 
 .mobileMenu {
   width: 100%;
