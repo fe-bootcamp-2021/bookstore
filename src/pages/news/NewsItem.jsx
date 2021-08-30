@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function NewsItem({ title, desc, date, imgSrc }) {
   return (
     <li className="newsItem">
@@ -14,4 +16,11 @@ export default function NewsItem({ title, desc, date, imgSrc }) {
       <hr></hr>
     </li>
   );
+}
+
+NewsItem.propTypes = {
+  title: PropTypes.string.isRequired, 
+  desc: PropTypes.string.isRequired, 
+  date: PropTypes.string.isRequired, 
+  imgSrc: PropTypes.string.isRequired
 }
