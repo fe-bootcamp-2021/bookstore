@@ -1,16 +1,36 @@
-.heading{
-    background-color: #2b2b2a;
-    text-align: center;
-    color: white;
-    height: 60px;
-    padding: 5px 50px;
-    margin: auto;
-    font-size: 16px;
+@import "../../styles/vars.css";
+
+.heading {
+  text-align: center;
+  height: 60px;
+  padding: 5px 50px;
+  margin: auto;
+  font-size: 16px;
 }
-.main{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    background-color: #333;
-    padding-bottom: 30px;
+
+.main {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+}
+
+.headingLightMode {
+  background-color: var(--bg-color-secondary-light);
+  color: var(--text-color-light);
+}
+
+.headingDarkMode {
+  background-color: var(--bg-color-secondary-dark);
+  color: var(--text-color-dark);
+}
+
+.mainLightMode {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+.mainDarkMode {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
 }

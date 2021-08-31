@@ -6,6 +6,7 @@ import styles from "./about.module.css";
 
 import panorama from "../about/images/panorama.jpg";
 import azg from "./images/azg.jpg";
+
 import Slider from "../../components/Slider/Slider";
 
 const AboutPage = () => {

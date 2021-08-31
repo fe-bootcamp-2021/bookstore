@@ -9,7 +9,7 @@
 }
 
 .footerDarkTherme {
-  background-color: #111110;
+  background-color: var(--bg-color-secondary-dark);
   color: var(--text-color-dark);
 }
 

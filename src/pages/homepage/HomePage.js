@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getBooks } from "../../redux/ducks/booksSlice";
-import { signOut } from "../../redux/ducks/usersSlice";
+import { Link, useHistory } from "react-router-dom";
+import cn from "classnames";
 
 import styles from "./HomePage.module.css";
 
+import { getBooks } from "../../redux/ducks/booksSlice";
+import { signOut } from "../../redux/ducks/usersSlice";
 import { makingOrder } from "../../redux/ducks/ordersSlice";
-import { Link, useHistory } from "react-router-dom";
+
 import BookCart from "../../components/BookCart/BookCart";
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books);
+  const { isDark } = useSelector((state) => state);
   const currentUser = useSelector((state) => state.users.currentUser);
 
   console.log("books", books);
@@ -30,11 +33,23 @@ const HomePage = (props) => {
 
   return (
     <>
-      <div className={styles.heading}>
+      <div
+        className={cn(
+          styles.heading,
+          { [styles.headingDarkMode]: isDark },
+          { [styles.headingLightMode]: !isDark }
+        )}
+      >
         <h3>Հատուկ Առաջարկ</h3>
       </div>
 
-      <div className={styles.main}>
+      <div
+        className={cn(
+          styles.main,
+          { [styles.mainDarkMode]: isDark },
+          { [styles.mainLightMode]: !isDark }
+        )}
+      >
         {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
         {books.map((book) => {
           return (
