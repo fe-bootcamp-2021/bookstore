@@ -1,0 +1,9 @@
+:root {
+    --text-color-light: black;
+    --bg-color-light: white;
+    --bg-color-secondary-light: rgb(218, 217, 217);
+
+    --text-color-dark: white;
+    --bg-color-dark: #333;
+    --bg-color-secondary-dark: #2b2b2a;
+}
