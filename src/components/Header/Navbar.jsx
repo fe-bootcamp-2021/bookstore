@@ -11,6 +11,7 @@ import logo from "../../assets/images/logo.jpg";
 import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import LightDarkMode from "../LightDarkMode/LightDarkMode";
 // import cartIcon from "../../assets/images/shopping_cart.svg";
 
 export default function Navbar() {
@@ -81,6 +82,7 @@ export default function Navbar() {
               )}
             </div>
           </div>
+          <LightDarkMode />
         </div>
       </div>
       <div
