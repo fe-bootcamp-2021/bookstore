@@ -16,13 +16,13 @@ export default function Cart() {
     acc = acc + item.Quantity;
     return acc;
   }, 0);
-  console.log(numberofbooks);
+
   const history = useHistory();
 
   const dispatch = useDispatch();
 
   const myCart = useSelector((state) => state.cart);
-  console.log(myCart);
+
   let totalPrice = 0;
 
   const handleItemDelete = (title) => {
@@ -81,6 +81,7 @@ export default function Cart() {
             })}
           </div>
           <h5>Total Price: {Number(totalPrice).toFixed(2)}</h5>
+          <button>Make Order</button>
         </div>
       )}
     </>
