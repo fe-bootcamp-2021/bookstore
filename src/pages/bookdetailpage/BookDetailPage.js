@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router-dom";
+import cn from "classnames";
 
 import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
@@ -12,9 +13,11 @@ import {
   loaderSource,
   currencySource,
 } from "./constants";
+
 import shopCart from "../../assets/images/shopping_cart(1).svg";
 import addOrder from "../../assets/images/plus_circle(1).svg";
 import removeOrder from "../../assets/images/minus_circle.svg";
+
 import styles from "./BookDetailPage.module.css";
 
 const BookDetailPage = (props) => {
@@ -23,6 +26,7 @@ const BookDetailPage = (props) => {
   const [closeIcon, setCloseIcon] = useState(null);
 
   const books = useSelector((state) => state.books);
+  const { isDark } = useSelector((state) => state); 
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
 
@@ -85,7 +89,13 @@ const BookDetailPage = (props) => {
   //console.log(myCartItem);
   return book ? (
     <>
-      <div className={styles.container}>
+      <div
+        className={cn(
+          styles.container,
+          { [styles.containerDarkTherme]: isDark },
+          { [styles.containerLightTherme]: !isDark }
+        )}
+      >
         <div className={styles.upperBody}>
           <h1>{book.title}</h1>
           <h3>{book.writer}(author)</h3>
