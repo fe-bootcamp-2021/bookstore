@@ -82,8 +82,8 @@ export default function Navbar() {
               )}
             </div>
           </div>
-          <LightDarkMode />
         </div>
+          <LightDarkMode />
       </div>
       <div
         hidden={mobileMenuVisibilty || width > 600}
