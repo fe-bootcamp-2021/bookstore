@@ -1,4 +1,7 @@
 import React from "react";
+import cn from "classnames";
+import { useSelector } from "react-redux";
+
 import styles from "./about.module.css";
 
 import panorama from "../about/images/panorama.jpg";
@@ -6,9 +9,17 @@ import azg from "./images/azg.jpg";
 import Slider from "../../components/Slider/Slider";
 
 const AboutPage = () => {
+  const { isDark } = useSelector((state) => state);
+
   return (
     <div>
-      <div className={styles.main}>
+      <div
+        className={cn(
+          styles.main,
+          { [styles.mainDarkMode]: isDark },
+          { [styles.mainLightMode]: !isDark }
+        )}
+      >
         <div className={styles.image}>
           {/* <img className={styles.img} alt="" src={bookImage} /> */}
           <Slider />
@@ -26,13 +37,30 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-      <div className={styles.title}>
+      <div
+        className={cn(
+          styles.title,
+          { [styles.titleDarkMode]: isDark },
+          { [styles.titleLightMode]: !isDark }
+        )}
+      >
         <span>Հոդվածներ մեր մասին</span>
       </div>
-      <section className={styles.article}>
+      <section
+        className={cn(
+          styles.article,
+          { [styles.mainDarkMode]: isDark },
+          { [styles.mainLightMode]: !isDark }
+        )}
+      >
         <div className={styles.firstArticle}>
           <h3>
             <a
+              className={cn(
+                styles.article,
+                { [styles.mainDarkMode]: isDark },
+                { [styles.mainLightMode]: !isDark }
+              )}
               href="https://www.azg.am/AM/culture/2019041203?fbclid=IwAR3JtmCtFKGAv8_9Vpgebsj-RNC_yaOPtmNmStoJcEoVVlF2H8ZN6w4O7JI"
               target="_blank"
             >
@@ -70,6 +98,11 @@ const AboutPage = () => {
         <div className={styles.secondArticle}>
           <h3>
             <a
+              className={cn(
+                styles.article,
+                { [styles.mainDarkMode]: isDark },
+                { [styles.mainLightMode]: !isDark }
+              )}
               href="https://www.azg.am/AM/culture/2019041203?fbclid=IwAR3JtmCtFKGAv8_9Vpgebsj-RNC_yaOPtmNmStoJcEoVVlF2H8ZN6w4O7JI"
               target="_blank"
             >
