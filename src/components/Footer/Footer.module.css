@@ -1,11 +1,21 @@
-footer {
+@import "../../styles/vars.css";
+
+.footer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #111110;
-  color: white;
   padding: 20px;
   font-size: 20px;
+}
+
+.footerDarkTherme {
+  background-color: #111110;
+  color: var(--text-color-dark);
+}
+
+.footerLightTherme {
+  background-color: rgb(218, 217, 217);
+  color: var(--text-color-light);
 }
 
 footer table {

@@ -1,11 +1,21 @@
+import cn from "classnames";
+
 import styles from "./Footer.module.css";
+import "../../styles/therme.css";
 
 import { ReactComponent as PhoneIcon } from "../../assets/icons/telephone.svg";
 import { ReactComponent as EmailIcon } from "../../assets/icons/e_mail.svg";
 
 export default function Footer() {
+  const isDark = false;
   return (
-    <footer>
+    <footer
+      className={cn(
+        styles.footer,
+        { [styles.footerDarkTherme]: isDark },
+        { [styles.footerLightTherme]: !isDark }
+      )}
+    >
       <table>
         <tbody>
           <tr>
