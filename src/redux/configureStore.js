@@ -7,6 +7,7 @@ import books from "./ducks/booksSlice";
 import users from "./ducks/usersSlice";
 import orders from "./ducks/ordersSlice";
 import cart from "./ducks/cartSlice";
+import lightDarkMode from "./ducks/lightDarkModeSlice";
 const sagaMiddlware = createSagaMiddleware();
 
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   users,
   orders,
   cart,
+  lightDarkMode,
 });
 
 const store = configureStore({
