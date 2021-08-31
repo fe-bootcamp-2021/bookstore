@@ -6,7 +6,12 @@ import { makingOrder } from "../../redux/ducks/ordersSlice";
 import { getBooks } from "../../redux/ducks/booksSlice";
 import { addItem } from "../../redux/ducks/cartSlice";
 import { createCart } from "./helpers/cartCreation";
-import { defaultQuantity, warningMessage } from "./constants";
+import {
+  defaultQuantity,
+  warningMessage,
+  loaderSource,
+  currencySource,
+} from "./constants";
 import shopCart from "../../assets/images/shopping_cart(1).svg";
 import addOrder from "../../assets/images/plus_circle(1).svg";
 import removeOrder from "../../assets/images/minus_circle.svg";
@@ -140,7 +145,7 @@ const BookDetailPage = (props) => {
             <p>
               Price: {book.price}
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Armenian_dram_sign.svg"
+                src={currencySource}
                 style={{ height: "12px", width: "12px" }}
               />
             </p>
@@ -198,7 +203,7 @@ const BookDetailPage = (props) => {
             <p>
               Price: {book.price}
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Armenian_dram_sign.svg"
+                src={currencySource}
                 style={{ height: "12px", width: "12px" }}
               />
             </p>
@@ -208,7 +213,7 @@ const BookDetailPage = (props) => {
     </>
   ) : (
     <div className={styles.loader}>
-      <img src="https://i.pinimg.com/originals/b9/1e/11/b91e1131ca20f6369aa68d21cb3a8960.gif" />
+      <img src={loaderSource} />
     </div>
   );
 };
