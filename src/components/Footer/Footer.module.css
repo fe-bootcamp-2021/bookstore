@@ -14,7 +14,7 @@
 }
 
 .footerLightTherme {
-  background-color: rgb(218, 217, 217);
+  background-color: var(--bg-color-secondary-dark);
   color: var(--text-color-light);
 }
 
