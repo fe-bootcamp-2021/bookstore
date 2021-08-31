@@ -1,0 +1,10 @@
+@import './vars.css';
+
+.darkTherme{
+    background-color: var(--bg-color-dark);
+    color:var(--text-color-dark)
+}
+.lightTherme{
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
