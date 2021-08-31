@@ -23,7 +23,6 @@ const cartSlice = createSlice({
     increment: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload);
 
-      // console.log(state[index].count, state[index].Quantity);
       if (Number(state[index].availableCount) > Number(state[index].Quantity)) {
         state[index].Quantity += 1;
       }

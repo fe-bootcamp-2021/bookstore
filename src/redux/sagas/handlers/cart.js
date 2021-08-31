@@ -1,16 +1,24 @@
 import { put, call } from "@redux-saga/core/effects";
 
-import { requestBookOrder, requestCartOrder } from "../requests/order";
+import { requestBookOrder } from "../requests/order";
 import { requestUpdateBook, requestGetBooks } from "../requests/books";
 import { setBooks } from "../../ducks/booksSlice";
 
 export function* handleBookOrder(action) {
   try {
-    const { user, book, quantity } = action.payload;
+    const { user, myCart, quantity } = action.payload;
 
     const { id, idToken } = user;
 
-    const response = yield call(() => requestCartOrder(user, book, quantity));
+    myCart.forEach((item) => {    
+        //   dispatch(
+        //     makingOrder({ user: currentUser, book: item, quantity: item.Quantity })
+        //   )
+        const response = yield call(() => requestBookOrder(user, item, item.quantity));
+        }
+    );
+
+    
 
     if (response && response.status === 200) {
       const bookChangeRes = yield call(() =>
@@ -32,15 +40,6 @@ export function* handleBookOrder(action) {
         }
       }
     }
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function* handleCartOrder(action) {
-  try {
-    const { cartBooks, user } = action.payload;
-    const { idToken } = user;
   } catch (err) {
     console.log(err);
   }

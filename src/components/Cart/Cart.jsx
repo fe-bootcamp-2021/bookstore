@@ -1,29 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 import { items } from "./getCartItemsFromLS";
 import cartIcon from "../../assets/images/shopping_cart.svg";
 import styles from "./Cart.module.css";
 import { decrement, deleteItem, increment } from "../../redux/ducks/cartSlice";
+import { requestBookOrder } from "../../redux/sagas/requests/order";
+import { makingOrder, makingCartOrder } from "../../redux/ducks/ordersSlice";
 
 export default function Cart() {
-  const { currentUser } = useSelector((state) => state.users);
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
-  const myCarts = useSelector((state) => state.cart);
-  const numberofbooks = myCarts.reduce((acc, item) => {
-    acc = acc + item.Quantity;
-    return acc;
-  }, 0);
+  const myCart = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
+  // }, []);
+
+  console.log("myCart", myCart);
 
   const history = useHistory();
 
-  const dispatch = useDispatch();
-
-  const myCart = useSelector((state) => state.cart);
-
   let totalPrice = 0;
+
+  const numberOfBooks = myCart.reduce((acc, item) => {
+    acc = acc + item.Quantity;
+    return acc;
+  }, 0);
 
   const handleItemDelete = (title) => {
     dispatch(deleteItem(title));
@@ -37,6 +44,12 @@ export default function Cart() {
     dispatch(decrement(quantity));
   };
 
+  console.log("myCart", myCart);
+
+  const handleMakeOrder = () => {
+    dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
+  };
+
   return (
     <>
       <div
@@ -44,7 +57,7 @@ export default function Cart() {
         className={styles.cartIcon}
       >
         <img height="100%" src={cartIcon}></img>
-        <div className={styles.countDiv}>{numberofbooks}</div>
+        <div className={styles.countDiv}>{numberOfBooks}</div>
       </div>
       {showCartContainer && (
         <div className={styles.cartContainer}>
@@ -81,7 +94,7 @@ export default function Cart() {
             })}
           </div>
           <h5>Total Price: {Number(totalPrice).toFixed(2)}</h5>
-          <button>Make Order</button>
+          <button onClick={handleMakeOrder}>Make Order</button>
         </div>
       )}
     </>
