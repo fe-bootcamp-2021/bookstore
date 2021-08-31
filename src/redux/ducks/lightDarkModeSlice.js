@@ -6,11 +6,11 @@ const lightDarkModeSlice = createSlice({
   name: "lightDarkMode",
   initialState,
   reducers: {
-    toggleBtn: (state, action) => {
-      state = !state;
+    toggleBtn: (state) => {
+      return !state;
     },
   },
 });
 
-export const { toggleBtn } = cartSlice.actions;
+export const { toggleBtn } = lightDarkModeSlice.actions;
 export default lightDarkModeSlice.reducer;

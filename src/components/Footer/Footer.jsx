@@ -1,13 +1,14 @@
+import { useSelector } from "react-redux";
 import cn from "classnames";
 
 import styles from "./Footer.module.css";
-import "../../styles/therme.css";
 
 import { ReactComponent as PhoneIcon } from "../../assets/icons/telephone.svg";
 import { ReactComponent as EmailIcon } from "../../assets/icons/e_mail.svg";
 
 export default function Footer() {
-  const isDark = false;
+  const { isDark } = useSelector((state) => state);
+  
   return (
     <footer
       className={cn(
