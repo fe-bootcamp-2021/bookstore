@@ -14,7 +14,9 @@ const ordersSlice = createSlice({
     createOrder(state, action) {
       state.singleOrders.push(action.payload);
     },
+
     makingCartOrder() {},
+
     createCartOrder(state, action) {
       state.cartOrders.push(action.payload);
     },
