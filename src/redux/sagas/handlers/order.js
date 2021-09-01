@@ -10,8 +10,6 @@ export function* handleBookOrder(action) {
   try {
     const { user, book, quantity } = action.payload;
 
-    const { id, idToken } = user;
-
     const response = yield call(() => requestBookOrder(user, book, quantity));
 
     if (response && response.status === 200) {
@@ -22,6 +20,7 @@ export function* handleBookOrder(action) {
           user.idToken
         )
       );
+
       if (bookChangeRes && bookChangeRes.status === 200) {
         const allBooksRes = yield call(requestGetBooks);
 
@@ -44,14 +43,10 @@ export function* handleCartOrder(action) {
     const { cartBooks, user } = action.payload;
     const { idToken } = user;
 
-    // for (let i = 0; i < cartBooks.length; i += 1) {
     const response = yield call(() => requestCartOrder(user, cartBooks));
-    // }
 
     console.log("response", response);
-    // response.map((simpleResponse) => {
 
-    // })
     for (let i = 0; i < response.length; i += 1) {
       if (response && response[i].status === 200) {
         console.log("cartBooks", cartBooks);

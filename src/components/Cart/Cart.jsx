@@ -6,7 +6,12 @@ import axios from "axios";
 import { items } from "./getCartItemsFromLS";
 import cartIcon from "../../assets/images/shopping_cart.svg";
 import styles from "./Cart.module.css";
-import { decrement, deleteItem, increment } from "../../redux/ducks/cartSlice";
+import {
+  clearCart,
+  decrement,
+  deleteItem,
+  increment,
+} from "../../redux/ducks/cartSlice";
 import { requestBookOrder } from "../../redux/sagas/requests/order";
 import { makingOrder, makingCartOrder } from "../../redux/ducks/ordersSlice";
 
@@ -48,6 +53,7 @@ export default function Cart() {
 
   const handleMakeOrder = () => {
     dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
+    dispatch(clearCart());
   };
 
   return (

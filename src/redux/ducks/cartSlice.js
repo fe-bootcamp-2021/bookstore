@@ -37,8 +37,14 @@ const cartSlice = createSlice({
         state.splice(index, 1);
       }
     },
+
+    clearCart: (state, action) => {
+      // console.log("clearCart", state);
+      state.length = 0;
+    },
   },
 });
 
-export const { addItem, deleteItem, increment, decrement } = cartSlice.actions;
+export const { addItem, deleteItem, increment, decrement, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
