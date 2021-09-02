@@ -23,23 +23,28 @@ const cartSlice = createSlice({
     increment: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload);
 
-      // console.log(state[index].count, state[index].Quantity);
       if (Number(state[index].availableCount) > Number(state[index].Quantity)) {
-        state[index].Quantity += 1;
+        state[index].Quantity = Number(state[index].Quantity) + 1;
       }
     },
 
     decrement: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload);
 
-      state[index].Quantity -= 1;
+      state[index].Quantity = Number(state[index].Quantity) - 1;
 
       if (Number(state[index].Quantity) === 0) {
         state.splice(index, 1);
       }
     },
+
+    clearCart: (state, action) => {
+      // console.log("clearCart", state);
+      state.length = 0;
+    },
   },
 });
 
-export const { addItem, deleteItem, increment, decrement } = cartSlice.actions;
+export const { addItem, deleteItem, increment, decrement, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
