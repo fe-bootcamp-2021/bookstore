@@ -37,6 +37,7 @@ const BookDetailPage = (props) => {
   const history = useHistory();
 
   const book = books.find((book) => book.id === id);
+  console.log("book", book);
 
   const plusMinusHandler = (type) => {
     let count;
@@ -61,7 +62,11 @@ const BookDetailPage = (props) => {
             quantity,
             book.price,
             id,
-            book.count
+            book.count,
+            book.img,
+            book.genre,
+            book.yearPublished,
+            book.isbn
           )
         )
       );
@@ -69,24 +74,21 @@ const BookDetailPage = (props) => {
       setErrorMessage(warningMessage);
       setCloseIcon("X");
     }
-    /*dispatch(
-      addItem(
-        createCart(book.title, book.writer, quantity, book.price * quantity, id)
-      )
-    );*/
   };
   const closeError = () => {
     setErrorMessage(null);
     setCloseIcon(null);
   };
+
   const orderingHandler = () => {
     if (!book.count || !currentUser) {
       setErrorMessage(warningMessage);
       setCloseIcon("X");
-      //return;
     } else dispatch(makingOrder({ user: currentUser, book, quantity }));
   };
-  //console.log(myCartItem);
+
+  console.log("book", book);
+
   return book ? (
     <>
       <div
