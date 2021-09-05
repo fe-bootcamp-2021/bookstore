@@ -112,24 +112,20 @@
     flex-direction: column;
   }
   .body {
-    /*width:100%;*/
     display: none;
   }
   .orderButton {
-    /* border:1px solid blue;*/
     width: 100%;
     margin: auto;
   }
   .upperBody {
     display: block;
-    /*border:2px solid green;*/
   }
   .message {
     width: 75%;
   }
   .lowerBody {
     display: block;
-    /*border:2px solid blue;*/
     width: 100%;
   }
 }

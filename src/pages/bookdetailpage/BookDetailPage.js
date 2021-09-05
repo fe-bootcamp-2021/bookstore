@@ -26,7 +26,7 @@ const BookDetailPage = (props) => {
   const [closeIcon, setCloseIcon] = useState(null);
 
   const books = useSelector((state) => state.books);
-  const { isDark } = useSelector((state) => state); 
+  const { isDark } = useSelector((state) => state);
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
 
@@ -127,15 +127,9 @@ const BookDetailPage = (props) => {
               <img src={shopCart} />
               Add to Cart
             </button>
-            {/*<p onClick={closeError}>{errorMessage}</p>*/}
             <button className={styles.cartButton} onClick={orderingHandler}>
               {" "}
               Order
-              {/* {!book.count
-              ? "out of order"
-              : currentUser
-              ? "order"
-           : "please login to order"}*/}
             </button>
           </div>
           <div className={styles.message}>
@@ -181,19 +175,9 @@ const BookDetailPage = (props) => {
               <img src={shopCart} />
               Add to Cart
             </button>
-            {/*<p onClick={closeError}>{errorMessage}</p>*/}
-            <button
-              className={styles.cartButton}
-              /*disabled={!currentUser || !book.count}*/
-              onClick={orderingHandler}
-            >
+            <button className={styles.cartButton} onClick={orderingHandler}>
               {" "}
               Order
-              {/*{!book.count
-              ? "out of order"
-              : currentUser
-              ? "order"
-            : "please login to order"}*/}
             </button>
           </div>
           <div className={styles.message}>
