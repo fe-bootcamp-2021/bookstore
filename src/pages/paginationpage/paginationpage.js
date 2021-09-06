@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import cn from "classnames";
-
-import styles from "./HomePage.module.css";
-
+import React from "react";
+import { useState, useEffect } from "react";
+import { useParams, useHistory, useRouteMatch } from "react-router-dom";
 import { getBooks } from "../../redux/ducks/booksSlice";
-import { signOut } from "../../redux/ducks/usersSlice";
-import { makingOrder } from "../../redux/ducks/ordersSlice";
+import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../components/Pagination/pagination";
 import BookCart from "../../components/BookCart/BookCart";
 import * as constants from "../../constants/constants";
-const HomePage = (props) => {
+import cn from "classnames";
+import styles from "./paginationpage.module.css";
+const Page = (props) => {
+  const match = useRouteMatch();
   const dispatch = useDispatch();
+  const history = useHistory();
   const books = useSelector((state) => state.books);
   const { isDark } = useSelector((state) => state);
-  const currentUser = useSelector((state) => state.users.currentUser);
-  const [currentBooks, setCurrentBooks] = useState([]);
-
-  /*console.log("books", books);
-  console.log(currentBooks);*/
-  const history = useHistory();
-
+  const pageNumber = +match.params.page;
   useEffect(() => {
     dispatch(getBooks());
-    setCurrentBooks(books.slice(0, constants.booksPerPage));
   }, []);
   const bookCardClickHandler = (book) => {
     history.push({
@@ -32,7 +24,15 @@ const HomePage = (props) => {
       state: { book },
     });
   };
-
+  const myBooks = books.slice(
+    (pageNumber - 1) * constants.booksPerPage,
+    pageNumber * constants.booksPerPage
+  );
+  /*console.log(+match.params.page);
+  console.log(match.params);
+  console.log(match);
+  console.log(books);*/
+  //console.log(books.slice((pageNumber - 1) * 3, pageNumber * 3));
   return (
     <>
       <div
@@ -53,7 +53,7 @@ const HomePage = (props) => {
         )}
       >
         {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
-        {currentBooks.map((book) => {
+        {myBooks.map((book) => {
           return (
             <BookCart
               key={book.id}
@@ -79,4 +79,4 @@ const HomePage = (props) => {
   );
 };
 
-export default HomePage;
+export default Page;
