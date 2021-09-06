@@ -11,7 +11,7 @@ export function* handleGetBooks(action) {
   try {
     const res = yield call(requestGetBooks);
     if (res && res.status === 200) {
-      console.log(res);
+      //console.log(res);
       const books = Object.keys(res.data).reduce(
         (accumulator, currentValue) => {
           accumulator.push({ id: currentValue, ...res.data[currentValue] });
