@@ -1,0 +1,30 @@
+.FormDiv {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.AdminNews {
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-style: italic;
+}
+
+.TableDiv {
+    border: 1px solid black;
+    width: 90%;
+    margin: auto;
+}
+
+.TableDiv table {
+    width: 100%;
+}
+
+.TableDiv tr, th, td {
+    border: 1px solid black;
+}
