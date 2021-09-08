@@ -12,9 +12,9 @@ import AboutPage from "../pages/about/about";
 import * as constants from "../constants/constants";
 import BookCart from "../components/BookCart/BookCart";
 
-const Routes = (props) => {
+const Routes = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
-
+  console.log("currentUser", currentUser);
   return (
     <Switch>
       <Route exact path={constants.adminPageUrl}>

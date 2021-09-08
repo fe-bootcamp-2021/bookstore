@@ -81,30 +81,6 @@ export function* handleCartOrder(action) {
         }
       }
     }
-    // if (response && response[0].status === 200) {
-    //   console.log("hasav updatein");
-    //   const bookChangeRes = yield call(() =>
-    //     requestUpdateBook(
-    //       cartBooks[0].id,
-    //       {
-    //         ...cartBooks[0],
-    //         count: cartBooks[0].availableCount - cartBooks[0].Quantity,
-    //       },
-    //       user.idToken
-    //     )
-    //   );
-    //   if (bookChangeRes && bookChangeRes.status === 200) {
-    //     const allBooksRes = yield call(requestGetBooks);
-
-    //     if (allBooksRes && allBooksRes.status === 200) {
-    //       const books = Object.keys(allBooksRes.data).reduce((a, b) => {
-    //         a.push({ id: b, ...allBooksRes.data[b] });
-    //         return a;
-    //       }, []);
-    //       yield put(setBooks(books));
-    //     }
-    //   }
-    // }
   } catch (err) {
     console.log(err);
   }
