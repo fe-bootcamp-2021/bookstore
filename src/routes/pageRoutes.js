@@ -7,6 +7,7 @@ import AdminPage from "../pages/adminpage/AdminPage";
 import AuthPage from "../pages/authpage/AuthPage";
 import BookDetailPage from "../pages/bookdetailpage/BookDetailPage";
 import News from "../pages/news/News";
+import Page from "../pages/paginationpage/paginationpage";
 import Cart from "../components/Cart/Cart";
 import AboutPage from "../pages/about/about";
 import * as constants from "../constants/constants";
@@ -25,6 +26,14 @@ const Routes = () => {
         ) : (
           () => <h3>You must be admin to view this page</h3>
         )}
+      </Route>
+      <Route
+        path={constants.listPageUrl}
+        /*render={({ match }) => {
+          return <Page />;
+        }}*/
+      >
+        <Page />
       </Route>
       <Route exact path={constants.homePageUrl}>
         <HomePage />
