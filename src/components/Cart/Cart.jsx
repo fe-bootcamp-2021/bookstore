@@ -18,15 +18,11 @@ import { makingOrder, makingCartOrder } from "../../redux/ducks/ordersSlice";
 export default function Cart() {
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
+
   const myCart = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.users);
+
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
-  // }, []);
-
-  console.log("myCart", myCart);
 
   const history = useHistory();
 
@@ -53,7 +49,7 @@ export default function Cart() {
 
   const handleMakeOrder = () => {
     dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
-    dispatch(clearCart());
+    // dispatch(clearCart());
   };
 
   return (

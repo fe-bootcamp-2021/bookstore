@@ -21,12 +21,14 @@ export default function Navbar() {
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
 
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const history = useHistory();
 
   const width = useWindowWidth();
+
+  console.log("isAdmin", currentUser);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -66,6 +68,13 @@ export default function Navbar() {
             <Link to={constants.aboutPageUrl}>
               <h4 className={styles.department}>ABOUT</h4>
             </Link>
+            {currentUser
+              ? currentUser.isAdmin && (
+                  <Link to={constants.adminPageUrl}>
+                    <h4 className={styles.department}>ADMIN PAGE</h4>
+                  </Link>
+                )
+              : null}
           </div>
 
           <div className={styles.navbarLoggers}>
@@ -83,7 +92,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-          <LightDarkMode />
+        <LightDarkMode />
       </div>
       <div
         hidden={mobileMenuVisibilty || width > 600}

@@ -3,8 +3,12 @@ import { put, call } from "@redux-saga/core/effects";
 import { requestBookOrderFromCart } from "../requests/orderFromCart";
 import { requestUpdateBook, requestGetBooks } from "../requests/books";
 import { setBooks } from "../../ducks/booksSlice";
+import { clearCart } from "../../ducks/cartSlice";
+import { useDispatch } from "react-redux";
 
 export function* handleBookOrderFromCart(action) {
+  const dispatch = useDispatch();
+
   try {
     const { user, book, quantity } = action.payload;
 
@@ -15,6 +19,9 @@ export function* handleBookOrderFromCart(action) {
     );
 
     if (response && response.status === 200) {
+      dispatch(clearCart());
+      console.log("clearCart");
+
       const bookChangeRes = yield call(() =>
         requestUpdateBook(
           book.id,

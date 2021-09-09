@@ -45,13 +45,8 @@ export function* handleCartOrder(action) {
 
     const response = yield call(() => requestCartOrder(user, cartBooks));
 
-    console.log("response", response);
-
     for (let i = 0; i < response.length; i += 1) {
       if (response && response[i].status === 200) {
-        console.log("cartBooks", cartBooks);
-        console.log("hasav updatein");
-
         const bookChangeRes = yield call(() =>
           requestUpdateBook(
             cartBooks[i].id,
