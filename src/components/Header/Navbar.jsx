@@ -67,7 +67,8 @@ export default function Navbar() {
               <h4
                 onClick={setHistoryName}
                 className={cn(styles.department, {
-                  [styles.currentPage]: history.location.pathname === "/",
+                  [styles.currentPage]:
+                    history.location.pathname === constants.homePageUrl,
                 })}
               >
                 BOOKS
@@ -77,7 +78,8 @@ export default function Navbar() {
               <h4
                 onClick={setHistoryName}
                 className={cn(styles.department, {
-                  [styles.currentPage]: history.location.pathname === "/sale",
+                  [styles.currentPage]:
+                    history.location.pathname === constants.salePageUrl,
                 })}
               >
                 SALE
@@ -87,7 +89,8 @@ export default function Navbar() {
               <h4
                 onClick={setHistoryName}
                 className={cn(styles.department, {
-                  [styles.currentPage]: history.location.pathname === "/news",
+                  [styles.currentPage]:
+                    history.location.pathname === constants.newsPageUrl,
                 })}
               >
                 NEWS
@@ -97,7 +100,8 @@ export default function Navbar() {
               <h4
                 onClick={setHistoryName}
                 className={cn(styles.department, {
-                  [styles.currentPage]: history.location.pathname === "/about",
+                  [styles.currentPage]:
+                    history.location.pathname === constants.aboutPageUrl,
                 })}
               >
                 ABOUT
@@ -110,7 +114,7 @@ export default function Navbar() {
                       onClick={setHistoryName}
                       className={cn(styles.adminPageDep, {
                         [styles.currentPage]:
-                          history.location.pathname === "/admin",
+                          history.location.pathname === constants.adminPageUrl,
                       })}
                     >
                       ADMIN PAGE
