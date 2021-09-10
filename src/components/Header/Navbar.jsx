@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../redux/ducks/usersSlice";
+import cn from "classnames";
 
+import { signOut } from "../../redux/ducks/usersSlice";
 import * as constants from "../../constants/constants";
 import styles from "./Navbar.module.css";
 import Cart from "../Cart/Cart";
@@ -20,11 +21,13 @@ export default function Navbar() {
   const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
+  const [pathName, setPathName] = useState("/");
 
   const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const history = useHistory();
+  console.log("history", history);
 
   const width = useWindowWidth();
 
@@ -33,6 +36,10 @@ export default function Navbar() {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  const setHistoryName = () => {
+    setPathName(history.location.pathname);
+  };
 
   return (
     <>
@@ -57,17 +64,60 @@ export default function Navbar() {
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
             <Link to={constants.homePageUrl}>
-              <h4 className={styles.department}>BOOKS</h4>
+              <h4
+                onClick={setHistoryName}
+                className={cn(styles.department, {
+                  [styles.currentPage]: history.location.pathname === "/",
+                })}
+              >
+                BOOKS
+              </h4>
             </Link>
             <Link to={constants.salePageUrl}>
-              <h4 className={styles.department}>SALE</h4>
+              <h4
+                onClick={setHistoryName}
+                className={cn(styles.department, {
+                  [styles.currentPage]: history.location.pathname === "/sale",
+                })}
+              >
+                SALE
+              </h4>
             </Link>
             <Link to={constants.newsPageUrl}>
-              <h4 className={styles.department}>NEWS</h4>
+              <h4
+                onClick={setHistoryName}
+                className={cn(styles.department, {
+                  [styles.currentPage]: history.location.pathname === "/news",
+                })}
+              >
+                NEWS
+              </h4>
             </Link>
             <Link to={constants.aboutPageUrl}>
-              <h4 className={styles.department}>ABOUT</h4>
+              <h4
+                onClick={setHistoryName}
+                className={cn(styles.department, {
+                  [styles.currentPage]: history.location.pathname === "/about",
+                })}
+              >
+                ABOUT
+              </h4>
             </Link>
+            {currentUser
+              ? currentUser.isAdmin && (
+                  <Link to={constants.adminPageUrl}>
+                    <h4
+                      onClick={setHistoryName}
+                      className={cn(styles.adminPageDep, {
+                        [styles.currentPage]:
+                          history.location.pathname === "/admin",
+                      })}
+                    >
+                      ADMIN PAGE
+                    </h4>
+                  </Link>
+                )
+              : null}
           </div>
 
           <div className={styles.navbarLoggers}>
@@ -103,13 +153,11 @@ export default function Navbar() {
         <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
-        <Link to={constants.adminPageUrl}>
-          <h4 className={styles.department}>admini ej</h4>
-        </Link>
+
         {currentUser
           ? currentUser.isAdmin && (
               <Link to={constants.adminPageUrl}>
-                <h4 className={styles.department}>ADMIN PAGE</h4>
+                <h4 className={styles.adminPageDep}>ADMIN PAGE</h4>
               </Link>
             )
           : null}
