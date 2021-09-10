@@ -18,7 +18,7 @@ import LightDarkMode from "../LightDarkMode/LightDarkMode";
 export default function Navbar() {
   const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =
     useState(true);
-  const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
+  const [mobileMenuVisibility, setMobileMenuVisibility] = useState(true);
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
   const [pathName, setPathName] = useState("/");
@@ -44,18 +44,18 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.mainNavbar}>
-        <Link to="/">
-          <div>
+        <Link to={constants.homePageUrl}>
+          <div onClick={setHistoryName}>
             <img className={styles.logo} src={logo} />
           </div>
         </Link>
         <div
-          onClick={() => setMobileMenuVisibility(!mobileMenuVisibilty)}
+          onClick={() => setMobileMenuVisibility(!mobileMenuVisibility)}
           hidden={burgerMenuIconVisibility}
           className={styles.menuIcon}
         >
-          <img width="30px" hidden={!mobileMenuVisibilty} src={menuIcon} />
-          <img width="30px" hidden={mobileMenuVisibilty} src={closeIcon} />
+          <img width="30px" hidden={!mobileMenuVisibility} src={menuIcon} />
+          <img width="30px" hidden={mobileMenuVisibility} src={closeIcon} />
         </div>
         {/* <Link> */}
         <Cart />
@@ -142,7 +142,7 @@ export default function Navbar() {
         <LightDarkMode />
       </div>
       <div
-        hidden={mobileMenuVisibilty || width > 600}
+        hidden={mobileMenuVisibility || width > 600}
         className={styles.mobileMenu}
       >
         <Link to={constants.booksPageUrl}>
