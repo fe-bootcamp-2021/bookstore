@@ -57,6 +57,12 @@
   transition: 0.4s;
 }
 
+.adminPageDep {
+  margin: 10px;
+  transition: 0.4s;
+  color: black;
+}
+
 .department:hover {
   cursor: pointer;
   color: gray;

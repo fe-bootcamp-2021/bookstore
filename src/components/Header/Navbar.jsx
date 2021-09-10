@@ -71,7 +71,7 @@ export default function Navbar() {
             {currentUser
               ? currentUser.isAdmin && (
                   <Link to={constants.adminPageUrl}>
-                    <h4 className={styles.department}>ADMIN PAGE</h4>
+                    <h4 className={styles.adminPageDep}>ADMIN PAGE</h4>
                   </Link>
                 )
               : null}
@@ -110,6 +110,13 @@ export default function Navbar() {
         <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
+        {currentUser
+          ? currentUser.isAdmin && (
+              <Link to={constants.adminPageUrl}>
+                <h4 className={styles.adminPageDep}>ADMIN PAGE</h4>
+              </Link>
+            )
+          : null}
         <div className={styles.logBtnsContainer}>
           <div>
             {currentUser ? (
