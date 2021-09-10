@@ -103,6 +103,9 @@ export default function Navbar() {
         <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
+        <Link to={constants.adminPageUrl}>
+          <h4 className={styles.department}>admini ej</h4>
+        </Link>
         {currentUser
           ? currentUser.isAdmin && (
               <Link to={constants.adminPageUrl}>
