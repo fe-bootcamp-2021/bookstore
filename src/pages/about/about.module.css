@@ -43,7 +43,7 @@
 }
 
 .titleDarkMode {
-  background-color: var( --bg-color-secondary-dark);
+  background-color: var(--bg-color-secondary-dark);
   color: var(--text-color-dark);
 }
 
@@ -71,7 +71,7 @@
 
 a {
   text-decoration: none;
-  font-size: 25px;
+  /* font-size: 25px; */
 }
 
 a:hover {

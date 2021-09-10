@@ -44,11 +44,12 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.mainNavbar}>
-        <Link to={constants.homePageUrl}>
-          <div onClick={setHistoryName}>
+        <div onClick={setHistoryName}>
+          <Link to={constants.homePageUrl}>
             <img className={styles.logo} src={logo} />
-          </div>
-        </Link>
+          </Link>
+        </div>
+
         <div
           onClick={() => setMobileMenuVisibility(!mobileMenuVisibility)}
           hidden={burgerMenuIconVisibility}
@@ -63,80 +64,71 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <Link to={constants.homePageUrl}>
-              <h4
-                onClick={setHistoryName}
-                className={cn(styles.department, {
-                  [styles.currentPage]:
-                    history.location.pathname === constants.homePageUrl,
-                })}
-              >
-                BOOKS
-              </h4>
-            </Link>
-            <Link to={constants.salePageUrl}>
-              <h4
-                onClick={setHistoryName}
-                className={cn(styles.department, {
-                  [styles.currentPage]:
-                    history.location.pathname === constants.salePageUrl,
-                })}
-              >
-                SALE
-              </h4>
-            </Link>
-            <Link to={constants.newsPageUrl}>
-              <h4
-                onClick={setHistoryName}
-                className={cn(styles.department, {
-                  [styles.currentPage]:
-                    history.location.pathname === constants.newsPageUrl,
-                })}
-              >
-                NEWS
-              </h4>
-            </Link>
-            <Link to={constants.aboutPageUrl}>
-              <h4
-                onClick={setHistoryName}
-                className={cn(styles.department, {
-                  [styles.currentPage]:
-                    history.location.pathname === constants.aboutPageUrl,
-                })}
-              >
-                ABOUT
-              </h4>
-            </Link>
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.homePageUrl,
+              })}
+            >
+              <Link to={constants.homePageUrl}>BOOKS</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.salePageUrl,
+              })}
+            >
+              <Link to={constants.salePageUrl}>SALE</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.newsPageUrl,
+              })}
+            >
+              <Link to={constants.newsPageUrl}>NEWS</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.aboutPageUrl,
+              })}
+            >
+              <Link to={constants.aboutPageUrl}>ABOUT</Link>
+            </h4>
+
             {currentUser
               ? currentUser.isAdmin && (
-                  <Link to={constants.adminPageUrl}>
-                    <h4
-                      onClick={setHistoryName}
-                      className={cn(styles.adminPageDep, {
-                        [styles.currentPage]:
-                          history.location.pathname === constants.adminPageUrl,
-                      })}
-                    >
-                      ADMIN PAGE
-                    </h4>
-                  </Link>
+                  <h4
+                    onClick={setHistoryName}
+                    className={cn(styles.adminPageDep, {
+                      [styles.currentPage]:
+                        history.location.pathname === constants.adminPageUrl,
+                    })}
+                  >
+                    <Link to={constants.adminPageUrl}>ADMIN PAGE</Link>
+                  </h4>
                 )
               : null}
           </div>
 
           <div className={styles.navbarLoggers}>
-            <div>
-              {currentUser ? (
-                <Link
-                  style={{ margin: "0" }}
-                  onClick={() => dispatch(signOut())}
-                >
-                  SignOut
-                </Link>
-              ) : (
-                <Link to={constants.authPageUrl}>LogIn</Link>
-              )}
-            </div>
+            {/* <div> */}
+            {currentUser ? (
+              <Link style={{ margin: "0" }} onClick={() => dispatch(signOut())}>
+                SignOut
+              </Link>
+            ) : (
+              <Link to={constants.authPageUrl}>LogIn</Link>
+            )}
+            {/* </div> */}
           </div>
         </div>
         <LightDarkMode />
