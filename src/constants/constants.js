@@ -1,4 +1,4 @@
-export const homePageUrl = "/";
+export const homePageUrl = "/pages/1";
 export const listPageUrl = "/pages/:page";
 export const booksPageUrl = "/book/:id";
 export const salePageUrl = "/sale";
