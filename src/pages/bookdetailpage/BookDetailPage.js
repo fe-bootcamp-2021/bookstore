@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 import cn from "classnames";
@@ -26,7 +26,7 @@ const BookDetailPage = (props) => {
   const [closeIcon, setCloseIcon] = useState(null);
 
   const books = useSelector((state) => state.books);
-  const { isDark } = useSelector((state) => state); 
+  const { isDark } = useSelector((state) => state);
   const currentUser = useSelector((state) => state.users.currentUser);
   const myCartItem = useSelector((state) => state.cart);
 
@@ -35,9 +35,13 @@ const BookDetailPage = (props) => {
   const dispatch = useDispatch();
 
   const history = useHistory();
+  let book = books.find((book) => book.id === id);
 
-  const book = books.find((book) => book.id === id);
-  console.log("book", book);
+  useEffect(() => {
+    dispatch(getBooks());
+    book = books.find((book) => book.id === id);
+  }, []);
+  console.log("book", book, books);
 
   const plusMinusHandler = (type) => {
     let count;
