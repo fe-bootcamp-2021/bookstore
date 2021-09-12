@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+}
+
 .mainNavbar {
   min-height: 60px;
   background-image: url(../../assets/images/background.jpg);
@@ -32,17 +36,17 @@
   color: white;
 }
 
-.navbarLoggers {
+.navbarLoggers > a {
   width: 20%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  color: white;
+  color: #969547;
 }
 
-.navbarLoggers a {
-  text-decoration: none;
-  color: #969547;
+.navbarLoggers > a:hover {
+  cursor: pointer;
+  color: gray;
 }
 
 .loggerDepartments {
@@ -50,19 +54,39 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
 }
 
 .department {
-  margin: 10px;
+  margin: 0 10px;
+}
+
+.department a {
   transition: 0.4s;
 }
 
-.department:hover {
+.adminPageDep a {
+  text-decoration: none;
+}
+
+.adminPageDep a:hover {
   cursor: pointer;
   color: gray;
 }
 
-.departments > a {
+.adminPageDep > a {
+  margin: 10px;
+  transition: 0.4s;
+  color: black;
+}
+
+.department > a:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.department > a {
+  padding: 0;
   text-decoration: none;
   color: #969547;
 }
@@ -113,14 +137,20 @@
   border: 0;
   background: none;
   transition: 0.4s;
-  color: white;
+  color: rgb(138, 136, 136);
   padding: 10px 20px;
+  text-decoration: none;
+  color: #969547;
 }
 
 .logSignButton:hover {
   background-color: rgba(218, 212, 212, 0.6);
   color: black;
   cursor: pointer;
+}
+
+.currentPage {
+  border-bottom: 2px solid black;
 }
 
 @media screen and (max-width: 600px) {

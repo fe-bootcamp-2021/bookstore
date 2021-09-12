@@ -12,20 +12,22 @@ import Pagination from "../../components/Pagination/pagination";
 import BookCart from "../../components/BookCart/BookCart";
 import * as constants from "../../constants/constants";
 const HomePage = (props) => {
+  const [currentBooks, setCurrentBooks] = useState([]);
+  const [bookList, setBookList] = useState([]);
+
   const dispatch = useDispatch();
+
   const books = useSelector((state) => state.books);
   const { isDark } = useSelector((state) => state);
   const currentUser = useSelector((state) => state.users.currentUser);
-  const [currentBooks, setCurrentBooks] = useState([]);
 
-  /*console.log("books", books);
-  console.log(currentBooks);*/
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getBooks());
     setCurrentBooks(books.slice(0, constants.booksPerPage));
   }, []);
+
   const bookCardClickHandler = (book) => {
     history.push({
       pathname: `/book/${book.id}`,

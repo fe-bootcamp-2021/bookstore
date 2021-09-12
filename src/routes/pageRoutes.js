@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { adminIds } from "../pages/authpage/adminIds";
@@ -13,9 +13,9 @@ import AboutPage from "../pages/about/about";
 import * as constants from "../constants/constants";
 import BookCart from "../components/BookCart/BookCart";
 
-const Routes = (props) => {
+const Routes = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
-
+  console.log("currentUser", currentUser);
   return (
     <Switch>
       <Route exact path={constants.adminPageUrl}>
@@ -27,13 +27,11 @@ const Routes = (props) => {
           () => <h3>You must be admin to view this page</h3>
         )}
       </Route>
-      <Route
-        path={constants.listPageUrl}
-        /*render={({ match }) => {
-          return <Page />;
-        }}*/
-      >
+      <Route path={constants.listPageUrl}>
         <Page />
+      </Route>
+      <Route exact path="/">
+        <Redirect to={constants.homePageUrl} />
       </Route>
       <Route exact path={constants.homePageUrl}>
         <HomePage />
