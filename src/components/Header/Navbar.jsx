@@ -106,11 +106,6 @@ export default function Navbar() {
 
             {currentUser
               ? currentUser.isAdmin && (
-<<<<<<< HEAD
-                  <Link to={constants.adminPageUrl}>
-                    <h4 className={styles.adminPageDep}>ADMIN PAGE</h4>
-                  </Link>
-=======
                   <h4
                     onClick={setHistoryName}
                     className={cn(styles.adminPageDep, {
@@ -120,7 +115,6 @@ export default function Navbar() {
                   >
                     <Link to={constants.adminPageUrl}>ADMIN PAGE</Link>
                   </h4>
->>>>>>> 7cba91117789db26cd924bda47f498f7861bb26d
                 )
               : null}
           </div>
@@ -155,10 +149,6 @@ export default function Navbar() {
         <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
-<<<<<<< HEAD
-=======
-
->>>>>>> 7cba91117789db26cd924bda47f498f7861bb26d
         {currentUser
           ? currentUser.isAdmin && (
               <Link to={constants.adminPageUrl}>

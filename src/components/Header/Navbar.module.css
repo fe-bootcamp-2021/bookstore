@@ -80,17 +80,7 @@
   color: black;
 }
 
-<<<<<<< HEAD
-.adminPageDep {
-  margin: 10px;
-  transition: 0.4s;
-  color: black;
-}
-
-.department:hover {
-=======
 .department > a:hover {
->>>>>>> 7cba91117789db26cd924bda47f498f7861bb26d
   cursor: pointer;
   color: gray;
 }
