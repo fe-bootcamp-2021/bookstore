@@ -26,11 +26,8 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const history = useHistory();
-  console.log("history", history);
 
   const width = useWindowWidth();
-
-  console.log("isAdmin", currentUser);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));

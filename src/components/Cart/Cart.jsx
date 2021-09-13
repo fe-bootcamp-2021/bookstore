@@ -50,8 +50,6 @@ export default function Cart() {
     dispatch(decrement(quantity));
   };
 
-  console.log("myCart", myCart);
-
   const handleMakeOrder = () => {
     dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
     dispatch(clearCart());

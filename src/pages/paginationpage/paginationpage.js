@@ -29,11 +29,7 @@ const Page = (props) => {
     (pageNumber - 1) * constants.booksPerPage,
     pageNumber * constants.booksPerPage
   );
-  /*console.log(+match.params.page);
-  console.log(match.params);
-  console.log(match);
-  console.log(books);*/
-  //console.log(books.slice((pageNumber - 1) * 3, pageNumber * 3));
+
   return (
     <>
       <div

@@ -41,7 +41,6 @@ const BookDetailPage = (props) => {
     dispatch(getBooks());
     book = books.find((book) => book.id === id);
   }, []);
-  console.log("book", book, books);
 
   const plusMinusHandler = (type) => {
     let count;
@@ -55,7 +54,6 @@ const BookDetailPage = (props) => {
     }
   };
 
-  console.log(book);
   const addToCartHandler = () => {
     if (currentUser)
       dispatch(
@@ -90,8 +88,6 @@ const BookDetailPage = (props) => {
       setCloseIcon("X");
     } else dispatch(makingOrder({ user: currentUser, book, quantity }));
   };
-
-  console.log("book", book);
 
   return book ? (
     <>

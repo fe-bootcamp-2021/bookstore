@@ -8,7 +8,6 @@ import {
 
 import { encodeToBase64 } from "../../../components/FileUpload/Fileupload";
 import Modal from "../../../ui/modal/Modal";
-// import Input from "../../components/Input/Input";
 import styles from "./AdminNews.module.css";
 import ChangeNewsForm from "../components/changeNewsPage/ChangeNewsForm";
 
@@ -17,13 +16,8 @@ const AdminNews = (props) => {
   const [showNewsDetail, setShowNewsDetail] = useState(false);
   const [currentNews, setCurrentNews] = useState(null);
 
-  console.log("currentNews", currentNews);
-  console.log("base64", fileBase64);
-
   const currentUser = useSelector((state) => state.users.currentUser);
-  console.log("admin NEWS cu", currentUser);
   const news = useSelector((state) => state.news);
-  console.log("adminNEWS", news);
   const dispatch = useDispatch();
 
   const title = useRef("");
@@ -47,9 +41,7 @@ const AdminNews = (props) => {
     title.current.focus();
   };
   const onFileChange = (e) => {
-    console.log("file changed");
     const file = e.target.files[0];
-    console.log("choosen file", file);
     encodeToBase64(file, setFileBase64);
   };
 

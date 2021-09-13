@@ -18,13 +18,8 @@ const AdminPage = (props) => {
   const [showBookDetail, setShowBookDetail] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
 
-  console.log("currentBook", currentBook);
-  console.log("base64", fileBase64);
-
   const currentUser = useSelector((state) => state.users.currentUser);
-  console.log("admin page cu", currentUser);
   const books = useSelector((state) => state.books);
-  console.log("books adminPage", books);
   const dispatch = useDispatch();
 
   const title = useRef("");
@@ -61,9 +56,7 @@ const AdminPage = (props) => {
     title.current.focus();
   };
   const onFileChange = (e) => {
-    // console.log('file changed')
     const file = e.target.files[0];
-    // console.log('choosen file', file)
     encodeToBase64(file, setFileBase64);
   };
 
@@ -185,10 +178,10 @@ const AdminPage = (props) => {
           </tbody>
         </table>
       </div>
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
-            <AdminNews />
+      <hr></hr>
+      <hr></hr>
+      <hr></hr>
+      <AdminNews />
     </>
   );
 };
