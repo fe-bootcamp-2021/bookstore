@@ -49,7 +49,7 @@ export default function Cart() {
 
   const handleMakeOrder = () => {
     dispatch(makingCartOrder({ user: currentUser, cartBooks: myCart }));
-    // dispatch(clearCart());
+    dispatch(clearCart());
   };
 
   return (

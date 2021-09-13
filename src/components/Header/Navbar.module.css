@@ -47,6 +47,7 @@
 .navbarLoggers > a:hover {
   cursor: pointer;
   color: gray;
+  border-bottom: 2px solid black;
 }
 
 .loggerDepartments {
@@ -78,6 +79,20 @@
   margin: 10px;
   transition: 0.4s;
   color: black;
+}
+
+.department::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s;
+}
+
+.department:hover::after {
+  width: 100%;
+  /* transition: width .3s; */
 }
 
 .department > a:hover {
