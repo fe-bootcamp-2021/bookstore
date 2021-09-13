@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../redux/ducks/usersSlice";
+import cn from "classnames";
 
+import { signOut } from "../../redux/ducks/usersSlice";
 import * as constants from "../../constants/constants";
 import styles from "./Navbar.module.css";
 import Cart from "../Cart/Cart";
@@ -12,41 +13,49 @@ import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import LightDarkMode from "../LightDarkMode/LightDarkMode";
-// import cartIcon from "../../assets/images/shopping_cart.svg";
 
 export default function Navbar() {
   const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =
     useState(true);
-  const [mobileMenuVisibilty, setMobileMenuVisibility] = useState(true);
+  const [mobileMenuVisibility, setMobileMenuVisibility] = useState(true);
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartItems, setCartItem] = useState([]);
+  const [pathName, setPathName] = useState("/");
 
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const history = useHistory();
+  console.log("history", history);
 
   const width = useWindowWidth();
+
+  console.log("isAdmin", currentUser);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  const setHistoryName = () => {
+    setPathName(history.location.pathname);
+  };
+
   return (
     <>
       <div className={styles.mainNavbar}>
-        <Link to="/">
-          <div>
+        <div onClick={setHistoryName}>
+          <Link to={constants.homePageUrl}>
             <img className={styles.logo} src={logo} />
-          </div>
-        </Link>
+          </Link>
+        </div>
+
         <div
-          onClick={() => setMobileMenuVisibility(!mobileMenuVisibilty)}
+          onClick={() => setMobileMenuVisibility(!mobileMenuVisibility)}
           hidden={burgerMenuIconVisibility}
           className={styles.menuIcon}
         >
-          <img width="30px" hidden={!mobileMenuVisibilty} src={menuIcon} />
-          <img width="30px" hidden={mobileMenuVisibilty} src={closeIcon} />
+          <img width="30px" hidden={!mobileMenuVisibility} src={menuIcon} />
+          <img width="30px" hidden={mobileMenuVisibility} src={closeIcon} />
         </div>
         {/* <Link> */}
         <Cart />
@@ -54,39 +63,77 @@ export default function Navbar() {
 
         <div className={styles.loggerDepartments}>
           <div className={styles.departments}>
-            <Link to={constants.homePageUrl}>
-              <h4 className={styles.department}>BOOKS</h4>
-            </Link>
-            <Link to={constants.salePageUrl}>
-              <h4 className={styles.department}>SALE</h4>
-            </Link>
-            <Link to={constants.newsPageUrl}>
-              <h4 className={styles.department}>NEWS</h4>
-            </Link>
-            <Link to={constants.aboutPageUrl}>
-              <h4 className={styles.department}>ABOUT</h4>
-            </Link>
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.homePageUrl,
+              })}
+            >
+              <Link to={constants.homePageUrl}>BOOKS</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.salePageUrl,
+              })}
+            >
+              <Link to={constants.salePageUrl}>SALE</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.newsPageUrl,
+              })}
+            >
+              <Link to={constants.newsPageUrl}>NEWS</Link>
+            </h4>
+
+            <h4
+              onClick={setHistoryName}
+              className={cn(styles.department, {
+                [styles.currentPage]:
+                  history.location.pathname === constants.aboutPageUrl,
+              })}
+            >
+              <Link to={constants.aboutPageUrl}>ABOUT</Link>
+            </h4>
+
+            {currentUser
+              ? currentUser.isAdmin && (
+                  <h4
+                    onClick={setHistoryName}
+                    className={cn(styles.adminPageDep, {
+                      [styles.currentPage]:
+                        history.location.pathname === constants.adminPageUrl,
+                    })}
+                  >
+                    <Link to={constants.adminPageUrl}>ADMIN PAGE</Link>
+                  </h4>
+                )
+              : null}
           </div>
 
           <div className={styles.navbarLoggers}>
-            <div>
-              {currentUser ? (
-                <Link
-                  style={{ margin: "0" }}
-                  onClick={() => dispatch(signOut())}
-                >
-                  SignOut
-                </Link>
-              ) : (
-                <Link to={constants.authPageUrl}>LogIn</Link>
-              )}
-            </div>
+            {/* <div> */}
+            {currentUser ? (
+              <Link style={{ margin: "0" }} onClick={() => dispatch(signOut())}>
+                SignOut
+              </Link>
+            ) : (
+              <Link to={constants.authPageUrl}>LogIn</Link>
+            )}
+            {/* </div> */}
           </div>
         </div>
-          <LightDarkMode />
+        <LightDarkMode />
       </div>
       <div
-        hidden={mobileMenuVisibilty || width > 600}
+        hidden={mobileMenuVisibility || width > 600}
         className={styles.mobileMenu}
       >
         <Link to={constants.booksPageUrl}>
@@ -101,6 +148,13 @@ export default function Navbar() {
         <Link to={constants.aboutPageUrl}>
           <h4 className={styles.mobileDepartment}>ABOUT</h4>
         </Link>
+        {currentUser
+          ? currentUser.isAdmin && (
+              <Link to={constants.adminPageUrl}>
+                <h4 className={styles.adminPageDep}>ADMIN PAGE</h4>
+              </Link>
+            )
+          : null}
         <div className={styles.logBtnsContainer}>
           <div>
             {currentUser ? (

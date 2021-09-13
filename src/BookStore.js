@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { autoSigningIn, signOut } from "./redux/ducks/usersSlice";
 
 import Routes from "./routes/pageRoutes";
 import Navbar from "./components/Header/Navbar";
-import Footer from './components/Footer/Footer'
+import Footer from "./components/Footer/Footer";
 
-const BookStore = (props) => {
-  // const currentUser = useSelector(state => state.users.currentUser)
+const BookStore = () => {
   const dispatch = useDispatch();
-
-  // console.log('currentUser from Bookstore', currentUser)
 
   useEffect(() => {
     let currentUserLS;

@@ -1,10 +1,12 @@
 import { takeLatest, all, fork } from "@redux-saga/core/effects";
+
 import {
   handleGetBooks,
   handleDeleteBook,
   handleAddBook,
   handleUpdateBook,
 } from "./handlers/books";
+
 import {
   getBooks,
   deletingBook,
@@ -33,10 +35,6 @@ import { handleBookOrder, handleCartOrder } from "./handlers/order";
 function* watcherMakeOrder() {
   yield takeLatest(makingOrder.type, handleBookOrder);
 }
-
-// function* watcherMakeOrderFromCart() {
-//   yield takeEvery(makingOrder.type, handleBookOrder);
-// }
 
 function* watcherMakingCartOrder() {
   yield takeLatest(makingCartOrder.type, handleCartOrder);

@@ -14,7 +14,18 @@
   flex-wrap: wrap;
   padding-bottom: 30px;
 }
+.loader2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
 
+.loader2 img {
+  width: 100vw;
+  height: 40vw;
+}
 .headingLightMode {
   background-color: var(--bg-color-secondary-light);
   color: var(--text-color-light);
