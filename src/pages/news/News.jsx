@@ -17,8 +17,6 @@ export default function News(props) {
     dispatch(getNews());
   }, []);
 
-  console.log(news, ":::NEWSSSS");
-
   return (
     <ul
       className={cn(
@@ -40,7 +38,7 @@ export default function News(props) {
           );
         })
       ) : (
-        <div>
+        <div className="news_loader">
           <img width="100%" height="80%" src={loaderSource} alt="loader" />
         </div>
       )}
