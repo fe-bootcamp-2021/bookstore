@@ -40,11 +40,11 @@ export default function Footer() {
             <td>9-00 - 18-00</td>
           </tr>
           <tr>
-            <td>Sunday</td>
+            <td>Saturday</td>
             <td>9-00 - 17-00</td>
           </tr>
           <tr>
-            <td>Saturday</td>
+            <td>Sunday</td>
             <td>Closed</td>
           </tr>
         </tbody>
