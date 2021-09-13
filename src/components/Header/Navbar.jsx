@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
@@ -13,7 +13,6 @@ import menuIcon from "../../assets/images/menu_icon.svg";
 import closeIcon from "../../assets/images/close_burger.svg";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import LightDarkMode from "../LightDarkMode/LightDarkMode";
-// import cartIcon from "../../assets/images/shopping_cart.svg";
 
 export default function Navbar() {
   const [burgerMenuIconVisibility, setBurgerMenuIconVisibility] =

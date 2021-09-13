@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -14,10 +14,15 @@ import {
 } from "../../redux/ducks/cartSlice";
 import { requestBookOrder } from "../../redux/sagas/requests/order";
 import { makingOrder, makingCartOrder } from "../../redux/ducks/ordersSlice";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function Cart() {
   const [cartItems, setCartItem] = useState(items);
   const [showCartContainer, setShowCartContainer] = useState(false);
+
+  const ref = useRef();
+
+  useOutsideClick(ref, () => setShowCartContainer(false));
 
   const myCart = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.users);
@@ -62,7 +67,7 @@ export default function Cart() {
         <div className={styles.countDiv}>{numberOfBooks}</div>
       </div>
       {showCartContainer && (
-        <div className={styles.cartContainer}>
+        <div ref={ref} className={styles.cartContainer}>
           <h2>Your Bookstore Cart</h2>
           <div className={styles.itemsContainer}>
             {myCart.map((item, idx) => {
