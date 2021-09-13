@@ -11,6 +11,20 @@ import {
   addingBook,
   updatingBook,
 } from "../ducks/booksSlice";
+
+import {
+  handleGetNews,
+  handleDeleteNews,
+  handleAddNews,
+  handleUpdateNews,
+} from "./handlers/news";
+import {
+  getNews,
+  deletingNews,
+  addingNews,
+  updatingNews,
+} from "../ducks/newsSlice";
+
 import { handleSignUp, handleSignIn, handleAutoSignIn } from "./handlers/users";
 import { signingUp, signingIn, autoSigningIn } from "../ducks/usersSlice";
 import { makingOrder, makingCartOrder } from "../ducks/ordersSlice";
@@ -56,6 +70,22 @@ function* watcherUpdateBook() {
   yield takeLatest(updatingBook.type, handleUpdateBook);
 }
 
+function* watcherGetNews() {
+  yield takeLatest(getNews.type, handleGetNews);
+}
+
+function* watcherDeleteNews() {
+  yield takeLatest(deletingNews.type, handleDeleteNews);
+}
+
+function* watcherAddNews() {
+  yield takeLatest(addingNews.type, handleAddNews);
+}
+
+function* watcherUpdateNews() {
+  yield takeLatest(updatingNews.type, handleUpdateNews);
+}
+
 export default function* rootSaga() {
   yield all([
     watcherGetBooks(),
@@ -67,5 +97,9 @@ export default function* rootSaga() {
     watcherAutoSignIn(),
     watcherMakeOrder(),
     watcherMakingCartOrder(),
+    watcherDeleteNews(),
+    watcherAddNews(),
+    watcherGetNews(),
+    watcherUpdateNews(),
   ]);
 }
