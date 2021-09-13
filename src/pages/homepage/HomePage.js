@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import cn from "classnames";
 
 import styles from "./HomePage.module.css";
-
+import { loaderSource } from "../bookdetailpage/constants";
 import { getBooks } from "../../redux/ducks/booksSlice";
 import { signOut } from "../../redux/ducks/usersSlice";
 import { makingOrder } from "../../redux/ducks/ordersSlice";
@@ -46,28 +46,29 @@ const HomePage = (props) => {
       >
         <h3>Հատուկ Առաջարկ</h3>
       </div>
-
-      <div
-        className={cn(
-          styles.main,
-          { [styles.mainDarkMode]: isDark },
-          { [styles.mainLightMode]: !isDark }
-        )}
-      >
-        {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
-        {currentBooks.map((book) => {
-          return (
-            <BookCart
-              key={book.id}
-              title={book.title}
-              writer={book.writer}
-              price={book.price}
-              img={book.img}
-              onClick={() => bookCardClickHandler(book)}
-            />
-          );
-        })}
-      </div>
+      {
+        <div
+          className={cn(
+            styles.main,
+            { [styles.mainDarkMode]: isDark },
+            { [styles.mainLightMode]: !isDark }
+          )}
+        >
+          {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
+          {currentBooks.map((book) => {
+            return (
+              <BookCart
+                key={book.id}
+                title={book.title}
+                writer={book.writer}
+                price={book.price}
+                img={book.img}
+                onClick={() => bookCardClickHandler(book)}
+              />
+            );
+          })}
+        </div>
+      }
       <div className={styles.pageList}>
         <div className={styles.myPages}>
           {new Array(Math.ceil(books.length / constants.booksPerPage))

@@ -5,6 +5,7 @@ import { getBooks } from "../../redux/ducks/booksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../components/Pagination/pagination";
 import BookCart from "../../components/BookCart/BookCart";
+import { loaderSource } from "../bookdetailpage/constants";
 import * as constants from "../../constants/constants";
 import cn from "classnames";
 import styles from "./paginationpage.module.css";
@@ -44,28 +45,33 @@ const Page = (props) => {
       >
         <h3>Հատուկ Առաջարկ</h3>
       </div>
-
-      <div
-        className={cn(
-          styles.main,
-          { [styles.mainDarkMode]: isDark },
-          { [styles.mainLightMode]: !isDark }
-        )}
-      >
-        {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
-        {myBooks.map((book) => {
-          return (
-            <BookCart
-              key={book.id}
-              title={book.title}
-              writer={book.writer}
-              price={book.price}
-              img={book.img}
-              onClick={() => bookCardClickHandler(book)}
-            />
-          );
-        })}
-      </div>
+      {myBooks.length ? (
+        <div
+          className={cn(
+            styles.main,
+            { [styles.mainDarkMode]: isDark },
+            { [styles.mainLightMode]: !isDark }
+          )}
+        >
+          {/* <button onClick={() => dispatch(getBooks())}>fetch books</button> */}
+          {myBooks.map((book) => {
+            return (
+              <BookCart
+                key={book.id}
+                title={book.title}
+                writer={book.writer}
+                price={book.price}
+                img={book.img}
+                onClick={() => bookCardClickHandler(book)}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles.loader2}>
+          <img src={loaderSource} />
+        </div>
+      )}
       <div className={styles.pageList}>
         <div className={styles.myPages}>
           {new Array(Math.ceil(books.length / constants.booksPerPage))
