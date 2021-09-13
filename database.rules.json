@@ -17,6 +17,15 @@
       ".read": "true",
       ".write": "auth != null"
     },
+    "news": {
+      ".indexOn": [
+        "title",
+        "description",
+        "datePublished"
+      ],
+      ".read": "true",
+      ".write": "auth != null"
+    },
     "orders": {
       ".read": "auth != null",
       ".write": "auth != null"

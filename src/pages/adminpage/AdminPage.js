@@ -11,6 +11,7 @@ import ChangeBookForm from "./components/changebookform/ChangeBookForm";
 import Modal from "../../ui/modal/Modal";
 import Input from "../../components/Input/Input";
 import styles from "./AdminPage.module.css";
+import AdminNews from "./adminNews/AdminNews";
 
 const AdminPage = (props) => {
   const [fileBase64, setFileBase64] = useState("");
@@ -184,6 +185,10 @@ const AdminPage = (props) => {
           </tbody>
         </table>
       </div>
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <AdminNews />
     </>
   );
 };

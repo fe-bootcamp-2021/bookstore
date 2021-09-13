@@ -1,12 +1,23 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import cn from "classnames";
 
 import "./News.css";
 
 import NewsItem from "./NewsItem";
+import { getNews } from "../../redux/ducks/newsSlice";
+import { loaderSource } from "../bookdetailpage/constants";
 
 export default function News(props) {
+  const dispatch = useDispatch();
   const { isDark } = useSelector((state) => state);
+  const { news } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getNews());
+  }, []);
+
+  console.log(news, ":::NEWSSSS");
 
   return (
     <ul
@@ -16,19 +27,23 @@ export default function News(props) {
         { newsLightMode: !isDark }
       )}
     >
-      {/* we will get this info from DB and map this component */}
-      <NewsItem
-        date="25.08.2021"
-        title="news Title"
-        desc="lorem ipsum ......."
-        imgSrc="imgUrl"
-      />
-      <NewsItem
-        date="25.08.2021"
-        title="news Title"
-        desc="lorem ipsum ......."
-        imgSrc="imgUrl"
-      />
+      {news.length ? (
+        news.map(({ datePublished, description, id, img, title }) => {
+          return (
+            <NewsItem
+              date={datePublished}
+              desc={description}
+              title={title}
+              imgSrc={img}
+              key={id}
+            />
+          );
+        })
+      ) : (
+        <div>
+          <img width="100%" height="80%" src={loaderSource} alt="loader" />
+        </div>
+      )}
     </ul>
   );
 }

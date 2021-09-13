@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function NewsItem({ title, desc, date, imgSrc }) {
+  console.log("hasav newsItem");
   return (
     <li className="newsItem">
       <div className="newsItemContent">
@@ -19,8 +20,8 @@ export default function NewsItem({ title, desc, date, imgSrc }) {
 }
 
 NewsItem.propTypes = {
-  title: PropTypes.string.isRequired, 
-  desc: PropTypes.string.isRequired, 
-  date: PropTypes.string.isRequired, 
-  imgSrc: PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+};
